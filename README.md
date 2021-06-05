@@ -7,4 +7,4 @@ Raspberry pi Status Monitor (StatMon) is simple web application that allow you t
 See [here]() for installation, usage and more details.
 
 
-![](doc/img/demo.gif)
+![](docs/img/demo.gif)
