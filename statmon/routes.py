@@ -15,7 +15,7 @@ from auth import RegistrationForm, LoginForm
 from database import User
 from passhash import bcrypt
 from database import db
-from usermodel import UserModel
+from usermodel import UserModel, JinjaTemplate
 from app import app
 
 
@@ -37,7 +37,7 @@ def login():
             MyLogger().write_log(f"{request.remote_addr} : login failed", "error")
             return render_template('login.html', title='Login', form=form, address=request.remote_addr)
         if bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
+            login_user(user)
             MyLogger().write_log(f"{request.remote_addr} : login success", "success")
             return redirect(url_for("home"))
         else:
@@ -82,9 +82,9 @@ def register():
 
 
 @app.route('/logout')
-#@login_required
+@login_required
 def logout():
-#    logout_user()
+    logout_user()
     MyLogger().write_log("{} : logout success".format(request.remote_addr), "success")
     return render_template("logout.html", title="Logout")
 
@@ -97,7 +97,6 @@ def home():
     settings = Path(__file__).resolve().parent / "config/settings/settings.json"
     with open(settings, "r") as f:
         json_data = json.load(f)
-
     return render_template("home.html", title="Home", data=info, graph=json_data)
 
 
@@ -110,22 +109,18 @@ def profile():
 @app.route('/user_model')
 @login_required
 def user_model():
-    u = UserModel()
-    pyfile = u.read_pyfile()
-    return render_template('user_model.html', title='user_model', pyfile=pyfile)
+    settings = Path(__file__).resolve().parent / "config/user_model/model_prop.json"
+    with open(settings, "r") as f:
+        json_data = json.load(f)
+    return render_template('user_model.html', title='user_model', graph=json_data)
 
 
 @app.route('/model_value', methods=["POST", "GET"])
-#@login_required
+@login_required
 def model_value():
     model = UserModel()
-    pyfile = model.read_pyfile()
-    cmd = f"python {pyfile}"
-    ret = subprocess.check_output(cmd.split()).decode("utf-8").strip("\n")
-    print(ret)
-    data = {"data": ret}
+    data = {"data": model.get_value()}
     return jsonify(ResultSet=json.dumps(data))
-
 
 
 @app.route('/add')
@@ -137,16 +132,21 @@ def add():
 @app.route("/add_graph", methods=["GET", "POST"])
 @login_required
 def add_graph():
-    app.config['UPLOAD_FOLDER'] = "."
     if request.method == "POST":
-        print(request.form)
-        print(request.form["pyfile"])
-        print(type(request.form["pyfile"]))
-        print(request.files)
-        file = request.files
-        file.save(".", "test.py")
+        j = JinjaTemplate(request.form)
+        j.make_template()
+        msg = "The new model has been added."
+        return render_template('result.html', title='result', msg=msg)
     return render_template('add_pyfile.html', title='add_pyfile')
 
+
+@app.route("/remove_model", methods=["GET", "POST"])
+@login_required
+def remove_model():
+    j = JinjaTemplate(request.form)
+    j.remove_model()
+    msg = "The current model has been removed."
+    return render_template('result.html', title='result', msg=msg)
 
 
 @app.route('/setting')

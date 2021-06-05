@@ -13,6 +13,7 @@ from pathlib import Path
 from database import User, db, DBInit
 from statdata import routine
 from mylogger import MyLogger
+from usermodel import UserModel
 from app import app
 import routes
 
@@ -66,16 +67,19 @@ if __name__ == "__main__":
         action='store_true'
     )
     parser.add_argument(
-        '--py',
+        '-n',
+        '--new',
         type=str,
         help='python'
     )
 
-
     args = parser.parse_args()
 
-    if args.py:
-        pass
+    if args.new:
+        model = UserModel()
+        model.register_file(args.new)
+        print("register :", args.new)
+        parser.exit()
 
     if args.register:
         if args.user and args.password:

@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting started &mdash; raspi-statmon 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="raspi-statmon 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="Add user-defined model" href="usermodel.html"/>
+        <link rel="prev" title="Installation" href="installation.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> raspi-statmon
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#database-setup">Database setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#start-app">Start app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#login-add-user">Login &amp; add user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#monitoring">Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#graph-setting">Graph setting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usermodel.html">Add user-defined model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other.html">Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">raspi-statmon</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Getting started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/start.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>This chapter describes the procedure for monitoring the status of raspberry pi on
+the web browser step by step.</p>
+<div class="section" id="database-setup">
+<h2>Database setup<a class="headerlink" href="#database-setup" title="Permalink to this headline">¶</a></h2>
+<p>At first, you need create the database and table for user account management. The statmon uses <code class="docutils literal notranslate"><span class="pre">mysql</span></code>or <code class="docutils literal notranslate"><span class="pre">mariadb</span></code> to access databases through<code class="docutils literal notranslate"><span class="pre">flask-SQLAlchemy</span></code>. What you have to do at first is that set what user will be used when access to the database. To register the user, exceute <code class="docutils literal notranslate"><span class="pre">statmon.py</span></code> with “register” ( <code class="docutils literal notranslate"><span class="pre">-r</span></code> )and “password” ( <code class="docutils literal notranslate"><span class="pre">-p</span></code> ) options as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">statmon</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">r</span> <span class="p">[</span><span class="o">-</span><span class="n">u</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">password</span><span class="o">&gt;</span> 
+</pre></div>
+</div>
+<p>Here is a list of options related to the user registration. Only password option need to be specified. For the other options, the default values are used if not to be specified.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-u</td>
+<td>User name</td>
+<td>Optional</td>
+<td>root</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>Password</td>
+<td>Required</td>
+<td>-</td>
+</tr>
+<tr>
+<td>--port</td>
+<td>Port used in mysql</td>
+<td>Optional</td>
+<td>3306</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>Server</td>
+<td>Optional</td>
+<td>localhost</td>
+</tr>
+</tbody>
+</table>
+<p>For example, you want to access database as the root user with password “1234”, execute as below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">statmon</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">r</span> <span class="o">-</span><span class="n">p</span> <span class="mi">1234</span> 
+</pre></div>
+</div>
+<p>Or sets if you want to use another user “test” and password “foo”.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">statmon</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">r</span> <span class="o">-</span><span class="n">u</span> <span class="n">test</span> <span class="o">-</span><span class="n">p</span> <span class="n">foo</span>
+</pre></div>
+</div>
+<p>This settings is stored as the json file in the <code class="docutils literal notranslate"><span class="pre">config/database.json</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When creating the database, login as root user with the password. If you have’t set up yet, you need setup before this step.</p>
+</div>
+<p>Next, Execute <code class="docutils literal notranslate"><span class="pre">statmon.py</span></code> with <code class="docutils literal notranslate"><span class="pre">-c</span></code> option to create database and table for managing users.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt; python statmon.py -c
+Create <span class="s1">&#39;user&#39;</span> table in database <span class="s1">&#39;raspi&#39;</span>
+Create admin user.
+</pre></div>
+</div>
+<p>Executing with this option creates the new database <code class="docutils literal notranslate"><span class="pre">raspi</span></code>, tabel <code class="docutils literal notranslate"><span class="pre">user</span></code> in the database (shown at first line), adds the default user <code class="docutils literal notranslate"><span class="pre">admin</span></code> in the table (shown at second line). You can also add other user from the register page. Since the admin’s password is vulnable, adding other user is recommended.</p>
+</div>
+<div class="section" id="start-app">
+<h2>Start app<a class="headerlink" href="#start-app" title="Permalink to this headline">¶</a></h2>
+<p>To start the application, execute the <code class="docutils literal notranslate"><span class="pre">statmon.py</span></code> in the terminal. Once starting, you can enter to login page in the browser.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt; python statmon.py 
+* Running on http://0.0.0.0:5000/ <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
+</pre></div>
+</div>
+<p>In the above case, you can access the page by <code class="docutils literal notranslate"><span class="pre">http://0.0.0.0:5000/</span></code> from the same machine where the app is running (i.e. raspberry pi). In case that access from other PC with the same network, access by <code class="docutils literal notranslate"><span class="pre">https://[ip_addr]:5000/</span></code>, here [ip_addr] is the IP address of the raspberry pi.</p>
+</div>
+<div class="section" id="login-add-user">
+<h2>Login &amp; add user<a class="headerlink" href="#login-add-user" title="Permalink to this headline">¶</a></h2>
+<p>When access to project root page, you are required to login. You can login as the user <code class="docutils literal notranslate"><span class="pre">admin</span></code> with the password of <code class="docutils literal notranslate"><span class="pre">admin</span></code>, but adds other user is recommended for secure. Clicking the sign up button to redirect the sign up page for creating new account. As shown below, The button is shown only when accessing the page from the machine running the app (thus the button is hidden when access from another PC).</p>
+<div class="myclass figure align-default" id="fig-target">
+<a class="reference internal image-reference" href="_images/login.png"><img alt="_images/login.png" src="_images/login.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">The button is hidden (when connected from the raspberry pi).</span><a class="headerlink" href="#fig-target" title="Permalink to this image">¶</a></p>
+</div>
+<div class="myclass figure align-default" id="id1">
+<a class="reference internal image-reference" href="_images/signup.png"><img alt="_images/signup.png" src="_images/signup.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">The button is displayed (when connected from the raspberry pi).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="monitoring">
+<h2>Monitoring<a class="headerlink" href="#monitoring" title="Permalink to this headline">¶</a></h2>
+<p>As the login produsure is success, you will be redirected to home page. In the top of the page, you see the list of information about hardware running the app (that is raspberry pi). You also see the five graphs showing the current values of getting from raspberry pi. Each graph shows the change in the data below over time.</p>
+<ul class="simple">
+<li><p>CPU temperature</p></li>
+<li><p>CPU usage</p></li>
+<li><p>Allocated memory</p></li>
+<li><p>Frequency</p></li>
+<li><p>Load average</p></li>
+</ul>
+<p>The update cycle of the graphs is 1 seconds. The duration displayed on each graph is set to 10 seconds by defalut, which can be changed from the setting page (see below).</p>
+</div>
+<div class="section" id="graph-setting">
+<h2>Graph setting<a class="headerlink" href="#graph-setting" title="Permalink to this headline">¶</a></h2>
+<p>In setting page, you can change the settings of the graphs. To change the current settings, input the value in each box, then click save button to submit the form. If the input values are vaild, a message will appear letting you know that the changes are accepted, then the graphs on the home page will be updated.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="left">Attribute</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">y-axes</td>
+<td align="left">min</td>
+<td align="left">int</td>
+<td align="left">Minimum of y axis</td>
+</tr>
+<tr>
+<td align="left">y-axes</td>
+<td align="left">max</td>
+<td align="left">int</td>
+<td align="left">Maximum of y axis</td>
+</tr>
+<tr>
+<td align="left">y-axes</td>
+<td align="left">step</td>
+<td align="left">int</td>
+<td align="left">Step size of tick in y axis</td>
+</tr>
+<tr>
+<td align="left">streaming</td>
+<td align="left">duration</td>
+<td align="left">int</td>
+<td align="left">The duration that the data will be displayed on the graph</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="usermodel.html" class="btn btn-neutral float-right" title="Add user-defined model" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, ogawa.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Stanford-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -7,29 +7,9 @@
         <div class="block is-dark">
             <form id="user_add" action="/add_graph" method="POST", enctype="multipart/form-data">
                 <div class="container is-large">
-                    <h2 class="title has-text-left">
-                        CPU temperature
-                    </h2>
-                    <p class="has-text-white has-text-left">
-                        aaaaaaaaaaaaaaaaaaaaa
+                    <p class="title has-text-left">
+                        Select graph properties
                     </p>
-                    <label class="label has-text-white is-large has-text-left">
-                        Upload file
-                    </label>
-                    <div class="field is-horizontal is-dark">
-                        <div class="field-label is-normal">
-                            <label class="label has-text-white">
-                                Upload file
-                            </label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field is-narrow">
-                                <p class="control">
-                                    <input type="file" class="input" accept=".py" name="pyfile">
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                     <label class="label has-text-white is-large has-text-left">
                         datasets
                     </label>
@@ -42,7 +22,7 @@
                         <div class="field-body">
                             <div class="field is-narrow">
                                 <p class="control">
-                                    <input type="text" class="input" name="datasets_label" value="data1" maxlength="1">
+                                    <input type="text" class="input" name="datasets_label" value="data1" maxlength="99">
                                 </p>
                             </div>
                         </div>
@@ -84,6 +64,20 @@
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
                             <label class="label has-text-white">
+                                tick size
+                            </label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <p class="control">
+                                    <input type="text" class="input" name="xaxes_ticksize" value="16" maxlength="2">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label has-text-white">
                                 label
                             </label>
                         </div>
@@ -115,6 +109,20 @@
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
                             <label class="label has-text-white">
+                                tick size
+                            </label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <p class="control">
+                                    <input type="text" class="input" name="yaxes_ticksize" value="16" maxlength="2">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label has-text-white">
                                 label
                             </label>
                         </div>
@@ -135,7 +143,7 @@
                         <div class="field-body">
                             <div class="field is-narrow">
                                 <p class="control">
-                                    <input type="text" class="input" name="yaxes_min" value="0" maxlength="3">
+                                    <input type="text" class="input" name="yaxes_min" value="0" maxlength="6">
                                 </p>
                             </div>
                         </div>
@@ -149,7 +157,7 @@
                         <div class="field-body">
                             <div class="field is-narrow">
                                 <p class="control">
-                                    <input type="text" class="input" name="yaxes_max" value="100" maxlength="3">
+                                    <input type="text" class="input" name="yaxes_max" value="100" maxlength="6">
                                 </p>
                             </div>
                         </div>
@@ -174,18 +182,32 @@
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
                             <label class="label has-text-white">
+                                refresh
+                            </label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <p class="control">
+                                    <input type="text" class="input" name="streaming_refresh" value="1000" maxlength="6">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label has-text-white">
                                 duration
                             </label>
                         </div>
                         <div class="field-body">
                             <div class="field is-narrow">
                                 <p class="control">
-                                    <input type="text" class="input" name="streaming_duration" value="1000" maxlength="6">
+                                    <input type="text" class="input" name="streaming_duration" value="10000" maxlength="6">
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="field is-grouped">
+                    <div class="field is-grouped is-centered">
                         <div class="field-label is-normal">
                             {% if msg %}
                                 <label class="label has-text-warning">
@@ -195,14 +217,25 @@
                                 </label>
                             {% endif %}
                         </div>
-                        <div class="field-body">
-                            <div class="field is-narrow">
-                                <p class="control">
-                                    <button class="button is-normal is-info" type="submit" name="add_submit">
-                                        Save
-                                    </button>
-                                </p>
-                            </div>
+                    </div>
+                    <div class="field is-grouped is-centered">
+                        <div class="field-label is-normal">
+                            {% if msg %}
+                                <label class="label has-text-warning">
+                                    <p class="has-text-warning">
+                                        {{ msg }}
+                                    </p>
+                                </label>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="field-body">
+                        <div class="field is-narrow">
+                            <p class="control">
+                                <button class="button is-normal is-info" type="submit" name="add_submit">
+                                    Submit
+                                </button>
+                            </p>
                         </div>
                     </div>
                 </div>

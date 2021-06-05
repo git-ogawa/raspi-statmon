@@ -167,7 +167,9 @@ def make_script():
     with open("test.json") as f:
         data = json.load(f)
     print(t.render(data))
+    print(type(t.render(data)))
     return s
+
 
 make_script()
 

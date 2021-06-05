@@ -88,7 +88,6 @@ class LoginForm(FlaskForm, ValidationError):
     """
     username = StringField("username")
     password = PasswordField('Password')
-    remember = BooleanField('Remember me')
     submit = SubmitField('Login')
 
     def validate_username(self, username: StringField):
