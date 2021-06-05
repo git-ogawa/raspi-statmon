@@ -1,1 +1,3 @@
 __pycache__
+statmon/data
+statmon/config/database.json
