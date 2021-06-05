@@ -1,0 +1,24 @@
+{
+    "datasets": {
+        "data1": {
+            "label": "dummy1",
+            "color": "red"
+        },
+        "data2": {
+            "label": "dummy2",
+            "color": "blue"
+        }
+    },
+    "label": "user-define",
+    "xaxes": {
+        "fontSize": 16,
+        "label": "xstr"
+    },
+    "yaxes": {
+        "fontSize": 16,
+        "label": "aaa"
+    },
+    "ticks": {
+        "fontSize": 16
+    }
+}
