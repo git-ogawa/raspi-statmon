@@ -1,8 +1,0 @@
-[SUCCESS 2021-06-05 14:44:52:457] 127.0.0.1 : login success
-[SUCCESS 2021-06-05 15:00:31:800] 127.0.0.1 : login success
-[SUCCESS 2021-06-05 15:42:59:144] 127.0.0.1 : login success
-[ERROR 2021-06-05 22:07:07:239] 127.0.0.1 : login failed
-[SUCCESS 2021-06-05 22:07:11:026] 127.0.0.1 : login success
-[SUCCESS 2021-06-05 22:12:09:577] 127.0.0.1 : login success
-[SUCCESS 2021-06-05 22:36:42:194] 127.0.0.1 : logout success
-[SUCCESS 2021-06-05 23:16:18:271] 127.0.0.1 : login success
