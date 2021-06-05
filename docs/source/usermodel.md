@@ -69,8 +69,12 @@ The page of selecting some properties
 :::
 
 
-After setting the value, then click `submit` button to save the values. If all the values are valid, you will be redirected to the results page.
-can get the correct data, the new graph is added and update in the user-model page.
+After setting the value, then click `submit` button to save the values. If all the values are valid, you will be redirected to the results page. The new graph is added and updated in the user-model page.
+
+:::{warning}
+After completing the step, you need to restart the server, otherwise the change doesn't reflect the webpage.
+:::
+
 
 :::{figure-md} fig-target
 :class: myclass
@@ -80,4 +84,8 @@ can get the correct data, the new graph is added and update in the user-model pa
 The newly added graph
 :::
 
-If you want to change the model, click `remove the model` to delete the current graph then repeate the above steps
+If you want to change the model, click `remove the model` to delete the current graph then repeate the above steps. 
+
+:::{warning}
+You should restart the server after removing the current model as when add the graph.
+:::

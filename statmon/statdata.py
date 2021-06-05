@@ -9,7 +9,7 @@ import random
 import time
 import csv
 from pathlib import Path
-from typing import Tuple
+from typing import Tuple, Union
 
 
 class Hardware():
@@ -170,7 +170,6 @@ class StatData():
             "usage_total": psutil.cpu_percent()
             }
         for i, item in enumerate(psutil.cpu_percent(percpu=True)):
-            print(item)
             cpu_usage["usage_cpu{}".format(i + 1)] = item
         return cpu_usage
 
@@ -255,7 +254,7 @@ class StatData():
         try:
             min_ = int(value[0])
             max_ = int(value[1])
-            step = int(value[2])
+            step = float(value[2])
             duration = int(value[3])
         except (ValueError, TypeError):
             return False, "There are empty or invalid fields."
@@ -269,7 +268,7 @@ class StatData():
 
         return True, "ok"
 
-    def check_yaxes(self, value: int, graph: str) -> bool:
+    def check_yaxes(self, value: Union[int, float], graph: str) -> bool:
         if graph == "temperature":
             if 0 <= value < 1000:
                 return True

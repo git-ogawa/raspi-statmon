@@ -1,10 +1,9 @@
 """Routing module
 """
 import json
-import subprocess
 from pathlib import Path
 
-from flask import render_template, url_for, flash, redirect, request,jsonify, abort
+from flask import render_template, url_for, flash, redirect, request, jsonify, abort
 from flask_login import (
     login_user, current_user, logout_user, login_required, LoginManager
 )
@@ -208,7 +207,6 @@ def read_json():
     settings = Path(__file__).resolve().parent / "config/settings/settings.json"
     with open(settings, "r") as f:
         json_data = json.load(f)
-    print(json_data)
     return jsonify(ResultSet=json.dumps(json_data))
 
 

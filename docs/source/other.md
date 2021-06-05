@@ -3,6 +3,34 @@
 The StatMon stores the obtained data in log files. This chapter describes the contents of the log shortly.
 
 
+## Database location 
+The database "raspi" for managing user logins is created in the top. You can directly check the content of the database and table from mysql.
+
+```sql
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| raspi              |
++--------------------+
+4 rows in set (0.003 sec)
+
+
+MariaDB [(none)]> select * from raspi.user;
++---------+----------+--------------------------------------------------------------+
+| user_id | username | password                                                     |
++---------+----------+--------------------------------------------------------------+
+| 000     | admin    | $2b$12$qrnmyL03i4dXdraHgqwZ2./cTQLzuoZL3hZMqAQIf57hkhV6StUKq |
++---------+----------+--------------------------------------------------------------+
+1 row in set (0.001 sec)
+```
+Each row of the table consists of user_id, username and hashed password of the registered user. Newly registered users' information will also be added to the table.
+
+
+
 ## Data store
 The obtained data are written to csv and stored as data log. The csv is stored to `stat_data` directory in the `data`. The dirctory contains sub-directory whose file name is the data `yyyymm` The log has the file name of `yymmdd.csv` and is stored in the sub-directory.
 

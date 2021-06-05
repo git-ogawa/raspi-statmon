@@ -14,7 +14,7 @@ class MyLogger():
         data_file = "{}.log".format(datetime.now().strftime("%Y%m%d"))
         data_dir = data_root / today
         dst = data_dir / data_file
-        data_dir.mkdir(exist_ok=True)
+        data_dir.mkdir(parents=True, exist_ok=True)
         logger.add(dst, format="[{level} {time:YYYY-MM-dd HH:mm:ss:SSS}] {message}")
 
     def get_log_dst(self):
@@ -27,7 +27,7 @@ class MyLogger():
         today = datetime.now().strftime("%Y%m")
         data_file = "{}.log".format(datetime.now().strftime("%Y%m%d"))
         data_dir = data_root / today
-        data_dir.mkdir(exist_ok=True)
+        data_dir.mkdir(parents=True, exist_ok=True)
         dst = data_dir / data_file
         logger.remove()
         logger.add(str(dst), format="[{level} {time:YYYY-MM-DD HH:mm:ss:SSS}] {message}")

@@ -12,8 +12,9 @@ def create_app():
     username = json_data["username"]
     password = json_data["password"]
     server = json_data["server"]
+    port = json_data["port"]
     db_name = json_data["db_name"]
-    db_url = f"mysql+pymysql://{username}:{password}@{server}/{db_name}?charset=utf8"
+    db_url = f"mysql+pymysql://{username}:{password}@{server}:{port}/{db_name}?charset=utf8"
 
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'cfb33786023cc152019e747a051f73c6'

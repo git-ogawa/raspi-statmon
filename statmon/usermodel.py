@@ -65,7 +65,6 @@ class JinjaTemplate():
                     dct[key_words[0]] = {}
                 dct[key_words[0]][key_words[1]] = self.parse_int(value)
                 if key_words[0] == "datasets":
-                    print("yes")
                     dct[key_words[0]]["color"] = next(it)
             else:
                 pass
@@ -84,7 +83,6 @@ class JinjaTemplate():
     def load_body(self):
         with open(str(self.body), "r") as f:
             s = f.read()
-        print(s)
         temp = Template(s)
         body = {"body": temp.render(self.json_data)}
         return body
@@ -117,6 +115,3 @@ class JinjaTemplate():
     def remove_model(self):
         shutil.copy(self.org, self.dst)
 
-if __name__ == "__main__":
-    pass
-    #j = JinjaTemplate()

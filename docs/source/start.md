@@ -4,10 +4,28 @@ This chapter describes the procedure for monitoring the status of raspberry pi o
 the web browser step by step.
 
 
-## Database setup
-At first, you need create the database and table for user account management. The statmon uses `mysql`or `mariadb` to access databases through`flask-SQLAlchemy`. What you have to do at first is that set what user will be used when access to the database. To register the user, exceute `statmon.py` with "register" ( `-r` )and "password" ( `-p` ) options as follows.
+## Directory structure
+The directory tree of this project is as follows. `statmon` is root directory, `db_setup.py` and `statmon.py` are the python scripts to be executed by the user. There are other files and sub-directories in the `statmon`
+
+```bash
+statmon
+└-- db_setup.py
+└-- statmon.py
+└-- [others]
 ```
-python statmon.py -r [-u <username>] -p <password> 
+
+
+`statmon.py`
+: The main script that runs the server by `flask`
+
+`db_setup.py`
+: The script for database setup.
+
+
+## Database setup
+At first, you need create the database and table for user account management. The statmon uses `mysql`or `mariadb` to access databases through`flask-SQLAlchemy`. What you have to do at first is that set what user will be used when access to the database. To register the user, exceute `db_setup.py` with "register" ( `-r` )and "password" ( `-p` ) options as follows.
+```
+python db_setup.py -r [-u <username>] -p <password> 
 ```
 
 Here is a list of options related to the user registration. Only password option need to be specified. For the other options, the default values are used if not to be specified.
@@ -22,11 +40,11 @@ Here is a list of options related to the user registration. Only password option
 
 For example, you want to access database as the root user with password "1234", execute as below.
 ```
-python statmon.py -r -p 1234 
+python db_setup.py -r -p 1234 
 ```
 Or sets if you want to use another user "test" and password "foo".
 ```
-python statmon.py -r -u test -p foo
+python db_setup.py -r -u test -p foo
 ```
 This settings is stored as the json file in the `config/database.json`.
 

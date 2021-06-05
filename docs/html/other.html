@@ -87,6 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="start.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usermodel.html">Add user-defined model</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#database-location">Database location</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#data-store">Data store</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-log">User log</a></li>
 </ul>
@@ -158,6 +159,30 @@
   <div class="section" id="log">
 <h1>Log<a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h1>
 <p>The StatMon stores the obtained data in log files. This chapter describes the contents of the log shortly.</p>
+<div class="section" id="database-location">
+<h2>Database location<a class="headerlink" href="#database-location" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>MariaDB [(none)]&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| raspi              |
++--------------------+
+4 rows in set (0.003 sec)
+
+MariaDB [(none)]&gt; select * from raspi.user;
++---------+----------+--------------------------------------------------------------+
+| user_id | username | password                                                     |
++---------+----------+--------------------------------------------------------------+
+| 000     | admin    | $2b$12$qrnmyL03i4dXdraHgqwZ2./cTQLzuoZL3hZMqAQIf57hkhV6StUKq |
++---------+----------+--------------------------------------------------------------+
+1 row in set (0.001 sec)
+
+</pre></div>
+</div>
+</div>
 <div class="section" id="data-store">
 <h2>Data store<a class="headerlink" href="#data-store" title="Permalink to this headline">¶</a></h2>
 <p>The obtained data are written to csv and stored as data log. The csv is stored to <code class="docutils literal notranslate"><span class="pre">stat_data</span></code> directory in the <code class="docutils literal notranslate"><span class="pre">data</span></code>. The dirctory contains sub-directory whose file name is the data <code class="docutils literal notranslate"><span class="pre">yyyymm</span></code> The log has the file name of <code class="docutils literal notranslate"><span class="pre">yymmdd.csv</span></code> and is stored in the sub-directory.</p>

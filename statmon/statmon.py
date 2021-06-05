@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import sys
 import os
 import json
@@ -48,25 +49,6 @@ if __name__ == "__main__":
         action='store_true'
     )
     parser.add_argument(
-        '-p',
-        '--password',
-        type=str,
-        help='port'
-    )
-    parser.add_argument(
-        '-u',
-        '--user',
-        type=str,
-        default="root",
-        help='user'
-    )
-    parser.add_argument(
-        '-r',
-        '--register',
-        help="Register",
-        action='store_true'
-    )
-    parser.add_argument(
         '-n',
         '--new',
         type=str,
@@ -74,28 +56,10 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
-
     if args.new:
         model = UserModel()
         model.register_file(args.new)
         print("register :", args.new)
-        parser.exit()
-
-    if args.register:
-        if args.user and args.password:
-            data = {
-                "username": args.user,
-                "password": args.password,
-                "server": "localhost",
-                "db_name": "raspi"
-            }
-            j = Path(__file__).resolve().parent / "config/database.json"
-            with open(str(j), mode='wt', encoding='utf-8') as file:
-                json.dump(data, file, ensure_ascii=False, indent=4)
-        else:
-            print(
-                "\033[31mUsername or password is empty.\033[0m",
-                file=sys.stderr)
         parser.exit()
 
     if args.create:
