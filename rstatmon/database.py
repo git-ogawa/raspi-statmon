@@ -1,5 +1,7 @@
 """Module for accessing to databases.
 """
+import json
+
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, create_engine
@@ -21,15 +23,25 @@ class DBInit():
     """Initializing database to save user's accounts.
     """
 
-    def __init__(self, username: str, password: str, host: str = "localhost"):
+    def __init__(
+            self, username: str = "root", password: str = None,
+            host: str = "localhost", port: int = 3306):
         self.username = username
         self.password = password
         self.host = host
-        self.port = 3306
+        self.port = port
         self.db_name = 'raspi'
 
-    def db_setup(self):
+    def read_json(self, js: str):
+        with open(js, "r") as f:
+            d = json.load(f)
+        self.username = d["username"]
+        self.password = d["password"]
+        self.host = d["server"]
+        self.port = d["port"]
+        self.db_name = d["db_name"]
 
+    def db_setup(self):
         self.create_database()
         self.create_table()
         self.add_admin()
@@ -52,7 +64,7 @@ class DBInit():
         The table named 'user' to store information about user's account is created in the
         database.
         """
-        engine = create_engine(f"mysql+pymysql://{self.username}:{self.password}@{self.host}:{self.port}/{self.db_name}?charset=utf8")
+        engine = create_engine(f"mysql+pymysql://{self.username}:{self.password}@{self.host}/{self.db_name}?charset=utf8")
         Base.metadata.create_all(bind=engine)
         print("\033[34mCreate 'user' table in database 'raspi'\033[0m")
 
@@ -96,6 +108,6 @@ class User(db.Model, UserMixin):
 
 class User2(Base):
     __tablename__ = "user"
-    user_id = Column(String(255), primary_key=True, nullable=False)
-    username = Column(String(255), nullable=False)
-    password = Column(String(255), nullable=False)
+    user_id = Column(String(100), primary_key=True, nullable=False)
+    username = Column(String(100), nullable=False)
+    password = Column(String(100), nullable=False)

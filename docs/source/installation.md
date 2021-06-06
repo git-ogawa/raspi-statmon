@@ -12,7 +12,9 @@ pip install git+https://github.com/git-ogawa/usbcamGUI
 
 The project uses MySQL, so install them with apt
 ```
-
+sudo apt install mysql-server
 ```
-
-If raspberry pi OS 64 bit (beta)
+you maybe can't install mysql in the version of your machine. In that case, try to install mariaDB instead.
+```
+sudo apt install mariadb-server-10.0
+```

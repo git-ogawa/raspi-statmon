@@ -1,7 +1,7 @@
-statmon
-=======
+rstatmon
+========
 
 .. toctree::
    :maxdepth: 4
 
-   statmon
+   rstatmon

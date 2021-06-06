@@ -15,7 +15,7 @@ from database import User
 from passhash import bcrypt
 from database import db
 from usermodel import UserModel, JinjaTemplate
-from app import app
+from application import app
 
 
 @app.route("/")

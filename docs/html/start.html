@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Getting started &mdash; raspi-statmon 1.0.0 documentation</title>
+  <title>Getting started &mdash; Raspi-StatMon 1.0.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="raspi-statmon 1.0.0 documentation" href="index.html"/>
+    <link rel="top" title="Raspi-StatMon 1.0.0 documentation" href="index.html"/>
         <link rel="next" title="Add user-defined model" href="usermodel.html"/>
         <link rel="prev" title="Installation" href="installation.html"/> 
 
@@ -54,7 +54,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> raspi-statmon
+            <a href="index.html" class="icon icon-home"> Raspi-StatMon
           
 
           
@@ -81,11 +81,16 @@
           
             
             
-                <p class="caption"><span class="caption-text">Contents:</span></p>
+                <p class="caption"><span class="caption-text">Table of Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#directory-structure">Directory structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mysql-setup">Mysql setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#disable-unix-socket">1. Disable unix_socket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-the-password-for-the-root-user">2. Set the password for the root user</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#database-setup">Database setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#start-app">Start app</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#login-add-user">Login &amp; add user</a></li>
@@ -94,7 +99,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usermodel.html">Add user-defined model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="other.html">Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">changelog</a></li>
 </ul>
 
@@ -110,7 +115,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">raspi-statmon</a>
+          <a href="index.html">Raspi-StatMon</a>
         
       </nav>
 
@@ -165,23 +170,87 @@
 the web browser step by step.</p>
 <div class="section" id="directory-structure">
 <h2>Directory structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
-<p>The directory tree of this project is as follows. <code class="docutils literal notranslate"><span class="pre">statmon</span></code> is root directory, <code class="docutils literal notranslate"><span class="pre">db_setup.py</span></code> and <code class="docutils literal notranslate"><span class="pre">statmon.py</span></code> are the python scripts to be executed by the user. There are other files and sub-directories in the <code class="docutils literal notranslate"><span class="pre">statmon</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>statmon
+<p>The directory tree of this project is as follows. <code class="docutils literal notranslate"><span class="pre">rstatmon</span></code> is root directory, <code class="docutils literal notranslate"><span class="pre">db_setup.py</span></code> and <code class="docutils literal notranslate"><span class="pre">rstatmon.py</span></code> are the python scripts to be executed by the user. There are other files and sub-directories in the <code class="docutils literal notranslate"><span class="pre">rstatmon</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rstatmon
 └-- db_setup.py
-└-- statmon.py
+└-- rstatmon.py
 └-- <span class="o">[</span>others<span class="o">]</span>
 </pre></div>
 </div>
 <dl class="simple myst">
-<dt><code class="docutils literal notranslate"><span class="pre">statmon.py</span></code></dt><dd><p>The main script that runs the server by <code class="docutils literal notranslate"><span class="pre">flask</span></code></p>
+<dt><code class="docutils literal notranslate"><span class="pre">rstatmon.py</span></code></dt><dd><p>The main script that runs the server by <code class="docutils literal notranslate"><span class="pre">flask</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">db_setup.py</span></code></dt><dd><p>The script for database setup.</p>
 </dd>
 </dl>
 </div>
+<div class="section" id="mysql-setup">
+<h2>Mysql setup<a class="headerlink" href="#mysql-setup" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have been already using mysql (or mariaDB), you can skip this step.</p>
+</div>
+<p>This section describes the steps needed to use the database for the first time.</p>
+<div class="section" id="disable-unix-socket">
+<h3>1. Disable unix_socket<a class="headerlink" href="#disable-unix-socket" title="Permalink to this headline">¶</a></h3>
+<p>At first, make sure that mysql is installed and that you can log in.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mysql</span>
+</pre></div>
+</div>
+<p>If you can log in, you will see the following message.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
+Server version: 10.0.28-MariaDB-2+b1 Raspbian testing-staging
+
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+
+MariaDB [(none)]&gt; 
+</pre></div>
+</div>
+<p>Next, make sure that unix sock is enabled. To do this, type <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">mysql;</span></code>, then <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">host,user,password,plugin</span> <span class="pre">from</span> <span class="pre">user;</span></code></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">MariaDB</span> <span class="p">[(</span><span class="k">none</span><span class="p">)]</span><span class="o">&gt;</span> <span class="n">use</span> <span class="n">mysql</span><span class="p">;</span>
+<span class="n">Reading</span> <span class="k">table</span> <span class="n">information</span> <span class="k">for</span> <span class="k">completion</span> <span class="k">of</span> <span class="k">table</span> <span class="k">and</span> <span class="k">column</span> <span class="k">names</span>
+<span class="n">You</span> <span class="n">can</span> <span class="n">turn</span> <span class="k">off</span> <span class="n">this</span> <span class="n">feature</span> <span class="k">to</span> <span class="k">get</span> <span class="n">a</span> <span class="n">quicker</span> <span class="n">startup</span> <span class="k">with</span> <span class="o">-</span><span class="n">A</span>
+
+<span class="k">Database</span> <span class="n">changed</span>
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">mysql</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">host</span><span class="p">,</span> <span class="k">user</span><span class="p">,</span><span class="n">password</span><span class="p">,</span><span class="n">plugin</span> <span class="k">from</span> <span class="k">user</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-----------+------+----------+-------------+</span>
+<span class="o">|</span> <span class="k">host</span>      <span class="o">|</span> <span class="k">user</span> <span class="o">|</span> <span class="n">password</span> <span class="o">|</span> <span class="n">plugin</span>      <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+------+----------+-------------+</span>
+<span class="o">|</span> <span class="n">localhost</span> <span class="o">|</span> <span class="n">root</span> <span class="o">|</span>          <span class="o">|</span> <span class="n">unix_socket</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+------+----------+-------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>From the above message, you can see that the unix_socket is activated. Disable this by typing <code class="docutils literal notranslate"><span class="pre">UPDATE</span> <span class="pre">user</span> <span class="pre">SET</span> <span class="pre">plugin=''</span> <span class="pre">WHERE</span> <span class="pre">User='root';</span></code></p>
+</div>
+<div class="section" id="set-the-password-for-the-root-user">
+<h3>2. Set the password for the root user<a class="headerlink" href="#set-the-password-for-the-root-user" title="Permalink to this headline">¶</a></h3>
+<p>Set a password for root to log in using the password method. Set the password by typing the following command (where <code class="docutils literal notranslate"><span class="pre">***</span></code> is the password you want to set)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">update</span> <span class="n">mysql</span><span class="o">.</span><span class="n">user</span> <span class="nb">set</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">(</span><span class="s1">&#39;***&#39;</span><span class="p">)</span> <span class="n">where</span> <span class="n">user</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If the password is set correctly, you will see the following message.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">MariaDB</span> <span class="p">[(</span><span class="k">none</span><span class="p">)]</span><span class="o">&gt;</span> <span class="k">update</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span> <span class="k">set</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">(</span><span class="s1">&#39;***&#39;</span><span class="p">)</span> <span class="k">where</span> <span class="k">user</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span><span class="p">;</span>
+<span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">0</span> <span class="k">rows</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="k">Rows</span> <span class="n">matched</span><span class="p">:</span> <span class="mi">1</span>  <span class="n">Changed</span><span class="p">:</span> <span class="mi">0</span>  <span class="n">Warnings</span><span class="p">:</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>After this, exit from mysql by typing <code class="docutils literal notranslate"><span class="pre">exit</span></code> and then restart mysql and update the changes by the following commands in the terminal.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">mysql</span>
+</pre></div>
+</div>
+<p>Finally, make sure that you can login as the root user with the password (here <code class="docutils literal notranslate"><span class="pre">***</span></code> is the password you set above).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span> <span class="o">-</span><span class="n">p</span><span class="o">***</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="database-setup">
 <h2>Database setup<a class="headerlink" href="#database-setup" title="Permalink to this headline">¶</a></h2>
-<p>At first, you need create the database and table for user account management. The statmon uses <code class="docutils literal notranslate"><span class="pre">mysql</span></code>or <code class="docutils literal notranslate"><span class="pre">mariadb</span></code> to access databases through<code class="docutils literal notranslate"><span class="pre">flask-SQLAlchemy</span></code>. What you have to do at first is that set what user will be used when access to the database. To register the user, exceute <code class="docutils literal notranslate"><span class="pre">db_setup.py</span></code> with “register” ( <code class="docutils literal notranslate"><span class="pre">-r</span></code> )and “password” ( <code class="docutils literal notranslate"><span class="pre">-p</span></code> ) options as follows.</p>
+<p>At first, you need create the database and table for user account management. The rstatmon uses <code class="docutils literal notranslate"><span class="pre">mysql</span></code>or <code class="docutils literal notranslate"><span class="pre">mariadb</span></code> to access databases through<code class="docutils literal notranslate"><span class="pre">flask-SQLAlchemy</span></code>. What you have to do at first is that set what user will be used when access to the database. To register the user, exceute <code class="docutils literal notranslate"><span class="pre">db_setup.py</span></code> with “register” ( <code class="docutils literal notranslate"><span class="pre">-r</span></code> )and “password” ( <code class="docutils literal notranslate"><span class="pre">-p</span></code> ) options as follows.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">db_setup</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">r</span> <span class="p">[</span><span class="o">-</span><span class="n">u</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">password</span><span class="o">&gt;</span> 
 </pre></div>
 </div>
@@ -226,7 +295,7 @@ the web browser step by step.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">db_setup</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">r</span> <span class="o">-</span><span class="n">p</span> <span class="mi">1234</span> 
 </pre></div>
 </div>
-<p>Or sets if you want to use another user “test” and password “foo”.</p>
+<p>Or set below if you want to use another user “test” and password “foo”.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">db_setup</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">r</span> <span class="o">-</span><span class="n">u</span> <span class="n">test</span> <span class="o">-</span><span class="n">p</span> <span class="n">foo</span>
 </pre></div>
 </div>
@@ -235,8 +304,8 @@ the web browser step by step.</p>
 <p class="admonition-title">Warning</p>
 <p>When creating the database, login as root user with the password. If you have’t set up yet, you need setup before this step.</p>
 </div>
-<p>Next, Execute <code class="docutils literal notranslate"><span class="pre">statmon.py</span></code> with <code class="docutils literal notranslate"><span class="pre">-c</span></code> option to create database and table for managing users.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt; python statmon.py -c
+<p>Next, Execute <code class="docutils literal notranslate"><span class="pre">rstatmon.py</span></code> with <code class="docutils literal notranslate"><span class="pre">-c</span></code> option to create database and table for managing users.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt; python rstatmon.py -c
 Create <span class="s1">&#39;user&#39;</span> table in database <span class="s1">&#39;raspi&#39;</span>
 Create admin user.
 </pre></div>
@@ -245,19 +314,19 @@ Create admin user.
 </div>
 <div class="section" id="start-app">
 <h2>Start app<a class="headerlink" href="#start-app" title="Permalink to this headline">¶</a></h2>
-<p>To start the application, execute the <code class="docutils literal notranslate"><span class="pre">statmon.py</span></code> in the terminal. Once starting, you can enter to login page in the browser.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt; python statmon.py 
+<p>To start the application, execute the <code class="docutils literal notranslate"><span class="pre">rstatmon.py</span></code> in the terminal. Once starting the app, the server will be started and you can enter to login page in the browser.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt; python rstatmon.py 
 * Running on http://0.0.0.0:5000/ <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
 </pre></div>
 </div>
-<p>In the above case, you can access the page by <code class="docutils literal notranslate"><span class="pre">http://0.0.0.0:5000/</span></code> from the same machine where the app is running (i.e. raspberry pi). In case that access from other PC with the same network, access by <code class="docutils literal notranslate"><span class="pre">https://[ip_addr]:5000/</span></code>, here [ip_addr] is the IP address of the raspberry pi.</p>
+<p>In the above case, you can access the page by <code class="docutils literal notranslate"><span class="pre">http://0.0.0.0:5000/</span></code> from the same machine where the app is running (that is raspberry pi). In case that access from other PC with the same network, access by <code class="docutils literal notranslate"><span class="pre">https://[ip_addr]:5000/</span></code>, here [ip_addr] is the IP address of the raspberry pi. From here, keep the server running.</p>
 </div>
 <div class="section" id="login-add-user">
 <h2>Login &amp; add user<a class="headerlink" href="#login-add-user" title="Permalink to this headline">¶</a></h2>
 <p>When access to project root page, you are required to login. You can login as the user <code class="docutils literal notranslate"><span class="pre">admin</span></code> with the password of <code class="docutils literal notranslate"><span class="pre">admin</span></code>, but adds other user is recommended for secure. Clicking the sign up button to redirect the sign up page for creating new account. As shown below, The button is shown only when accessing the page from the machine running the app (thus the button is hidden when access from another PC).</p>
 <div class="myclass figure align-default" id="fig-target">
 <a class="reference internal image-reference" href="_images/login.png"><img alt="_images/login.png" src="_images/login.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">The button is hidden (when connected from the raspberry pi).</span><a class="headerlink" href="#fig-target" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">The button is hidden (when connected from other PC).</span><a class="headerlink" href="#fig-target" title="Permalink to this image">¶</a></p>
 </div>
 <div class="myclass figure align-default" id="id1">
 <a class="reference internal image-reference" href="_images/signup.png"><img alt="_images/signup.png" src="_images/signup.png" style="width: 400px;" /></a>
@@ -266,7 +335,7 @@ Create admin user.
 </div>
 <div class="section" id="monitoring">
 <h2>Monitoring<a class="headerlink" href="#monitoring" title="Permalink to this headline">¶</a></h2>
-<p>As the login produsure is success, you will be redirected to home page. In the top of the page, you see the list of information about hardware running the app (that is raspberry pi). You also see the five graphs showing the current values of getting from raspberry pi. Each graph shows the change in the data below over time.</p>
+<p>As the login procedure is success, you will be redirected to home page. In the top of the page, you see the list of information about hardware running the app (that is raspberry pi). You also see the five graphs showing the current values of getting from raspberry pi. Each graph shows the change in the data below over time.</p>
 <ul class="simple">
 <li><p>CPU temperature</p></li>
 <li><p>CPU usage</p></li>
@@ -274,11 +343,11 @@ Create admin user.
 <li><p>Frequency</p></li>
 <li><p>Load average</p></li>
 </ul>
-<p>The update cycle of the graphs is 1 seconds. The duration displayed on each graph is set to 10 seconds by defalut, which can be changed from the setting page (see below).</p>
+<p>The update cycle of the graphs is 1 seconds. The duration displayed on each graph is set to 10 seconds by default, which can be changed from the setting page (see below).</p>
 </div>
 <div class="section" id="graph-setting">
 <h2>Graph setting<a class="headerlink" href="#graph-setting" title="Permalink to this headline">¶</a></h2>
-<p>In setting page, you can change the settings of the graphs. To change the current settings, input the value in each box, then click save button to submit the form. If the input values are vaild, a message will appear letting you know that the changes are accepted, then the graphs on the home page will be updated.</p>
+<p>In setting page, you can change the settings of the graphs. To change the current settings, input the value in each box, then click save button to submit the form. If the input values are valid, a message will appear letting you know that the changes are accepted, then the graphs on the home page will be updated.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -314,7 +383,8 @@ Create admin user.
 <td align="left">The duration that the data will be displayed on the graph</td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </div>
 
 

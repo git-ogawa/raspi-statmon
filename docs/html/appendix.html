@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Log &mdash; raspi-statmon 1.0.0 documentation</title>
+  <title>Appendix &mdash; Raspi-StatMon 1.0.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="raspi-statmon 1.0.0 documentation" href="index.html"/>
+    <link rel="top" title="Raspi-StatMon 1.0.0 documentation" href="index.html"/>
         <link rel="next" title="changelog" href="changelog.html"/>
         <link rel="prev" title="Add user-defined model" href="usermodel.html"/> 
 
@@ -54,7 +54,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> raspi-statmon
+            <a href="index.html" class="icon icon-home"> Raspi-StatMon
           
 
           
@@ -81,12 +81,12 @@
           
             
             
-                <p class="caption"><span class="caption-text">Contents:</span></p>
+                <p class="caption"><span class="caption-text">Table of Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="start.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usermodel.html">Add user-defined model</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Log</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Appendix</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#database-location">Database location</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#data-store">Data store</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-log">User log</a></li>
@@ -107,7 +107,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">raspi-statmon</a>
+          <a href="index.html">Raspi-StatMon</a>
         
       </nav>
 
@@ -137,13 +137,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Log</li>
+      <li>Appendix</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/other.md.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/appendix.md.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -156,9 +156,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="log">
-<h1>Log<a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h1>
-<p>The StatMon stores the obtained data in log files. This chapter describes the contents of the log shortly.</p>
+  <div class="section" id="appendix">
+<h1>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="database-location">
 <h2>Database location<a class="headerlink" href="#database-location" title="Permalink to this headline">¶</a></h2>
 <p>The database “raspi” for managing user logins is created in the top. You can directly check the content of the database and table from mysql.</p>
@@ -187,14 +186,14 @@ MariaDB [(none)]&gt; select * from raspi.user;
 </div>
 <div class="section" id="data-store">
 <h2>Data store<a class="headerlink" href="#data-store" title="Permalink to this headline">¶</a></h2>
-<p>The obtained data are written to csv and stored as data log. The csv is stored to <code class="docutils literal notranslate"><span class="pre">stat_data</span></code> directory in the <code class="docutils literal notranslate"><span class="pre">data</span></code>. The dirctory contains sub-directory whose file name is the data <code class="docutils literal notranslate"><span class="pre">yyyymm</span></code> The log has the file name of <code class="docutils literal notranslate"><span class="pre">yymmdd.csv</span></code> and is stored in the sub-directory.</p>
+<p>The RStatMon stores the obtained data in log files. The obtained data are written to csv and stored as data log. The csv is stored to <code class="docutils literal notranslate"><span class="pre">stat_data</span></code> directory in the <code class="docutils literal notranslate"><span class="pre">data</span></code>. The dirctory contains sub-directory whose dir name is the data <code class="docutils literal notranslate"><span class="pre">yyyymm</span></code> The log has the file name of <code class="docutils literal notranslate"><span class="pre">yymmdd.csv</span></code> and is stored in the sub-directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>data
 └-- stat_data
     └-- yyyymm
         └-- yymmdd.csv
 </pre></div>
 </div>
-<p>The csv contains the header in the first line and the data in subsequent lines. so this will be used for other purposes (for example plotting graph with pandas and matplotlib as shown below).</p>
+<p>The csv contains the header in the first line and the data in subsequent lines. so this can be used for other purposes (for example plotting graph with pandas and matplotlib as shown below).</p>
 <div class="myclass figure align-default" id="fig-target">
 <a class="reference internal image-reference" href="_images/graph_example.png"><img alt="_images/graph_example.png" src="_images/graph_example.png" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-text">Plotting CPU temperature change using matplotlib</span><a class="headerlink" href="#fig-target" title="Permalink to this image">¶</a></p>
@@ -202,24 +201,12 @@ MariaDB [(none)]&gt; select * from raspi.user;
 </div>
 <div class="section" id="user-log">
 <h2>User log<a class="headerlink" href="#user-log" title="Permalink to this headline">¶</a></h2>
-<p>The operations about user account such as login, logout creat and delete accout are written to user log. In the log, The result of process, date, IP address of the PC accessing the machine, the detaild message are shown according to the following format.</p>
+<p>The operations about user account such as login, logout, create and delete account are written to user log. In the log, The result of process, date, IP address of the PC accessing the machine, the detailed message are shown according to the following format.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">log_level</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">date</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">ip_address</span><span class="o">&gt;</span> <span class="p">:</span> <span class="o">&lt;</span><span class="n">message</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The example are shown as below.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>pi@raspberrypi:~/raspi_statmon/raspi_statmon/data $ cat log/202106/20210603.log 
-[ERROR 2021-06-33 01:42:01:637] 127.0.0.1 : login failed
-[ERROR 2021-06-33 01:42:11:271] 127.0.0.1 : login failed
-[ERROR 2021-06-33 01:52:55:301] 127.0.0.1 : login failed
-[ERROR 2021-06-33 01:52:58:032] 127.0.0.1 : login failed
-[ERROR 2021-06-33 01:53:06:078] 127.0.0.1 : login failed
-[ERROR 2021-06-33 01:53:10:546] 127.0.0.1 : login failed
-[ERROR 2021-06-33 01:53:15:695] 127.0.0.1 : login failed
-[ERROR 2021-06-33 01:53:19:942] 127.0.0.1 : login failed
-[SUCCESS 2021-06-33 01:53:31:352] 127.0.0.1 : login success
-[SUCCESS 2021-06-33 01:54:00:818] 127.0.0.1 : logout success
-[SUCCESS 2021-06-33 01:55:24:899] 127.0.0.1 : logout success
-[SUCCESS 2021-06-33 01:55:42:209] 127.0.0.1 : created account
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>pi@raspberrypi:~/raspi_statmon/rstatmon/data $ cat log/202106/20210603.log 
 [SUCCESS 2021-06-03 02:26:43:502] 127.0.0.1 : login success
 [SUCCESS 2021-06-03 02:49:32:669] 127.0.0.1 : login success
 [SUCCESS 2021-06-03 17:02:24:807] 127.0.0.1 : login success

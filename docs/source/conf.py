@@ -15,12 +15,11 @@ import sys
 import stanford_theme
 
 
-sys.path.insert(0, os.path.abspath('../../statmon'))
-
+sys.path.insert(0, os.path.abspath('../..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'raspi-statmon'
+project = 'Raspi-StatMon'
 copyright = '2021, ogawa'
 author = 'ogawa'
 
@@ -39,6 +38,7 @@ extensions = [
     "myst_parser",
     "sphinx_markdown_tables",
     'sphinx.ext.autosectionlabel',
+    "sphinx.ext.githubpages"
 ]
 
 myst_enable_extensions = [
@@ -54,6 +54,7 @@ myst_enable_extensions = [
     "substitution",
     "tasklist",
 ]
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

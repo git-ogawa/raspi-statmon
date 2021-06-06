@@ -1,0 +1,867 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rstatmon package &mdash; Raspi-StatMon 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Raspi-StatMon 1.0.0 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Raspi-StatMon
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usermodel.html">Add user-defined model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Raspi-StatMon</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>rstatmon package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rstatmon.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rstatmon-package">
+<h1>rstatmon package<a class="headerlink" href="#rstatmon-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="rstatmon-application-module">
+<h2>rstatmon.application module<a class="headerlink" href="#rstatmon-application-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-rstatmon.auth">
+<span id="rstatmon-auth-module"></span><h2>rstatmon.auth module<a class="headerlink" href="#module-rstatmon.auth" title="Permalink to this headline">¶</a></h2>
+<dl class="py exception">
+<dt id="rstatmon.auth.LoginForm">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">rstatmon.auth.</span></code><code class="sig-name descname"><span class="pre">LoginForm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.auth.LoginForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_wtf.form.FlaskForm</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">wtforms.validators.ValidationError</span></code></p>
+<p>Form class for login.</p>
+<dl class="py method">
+<dt id="rstatmon.auth.LoginForm.check_validate">
+<code class="sig-name descname"><span class="pre">check_validate</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span><a class="headerlink" href="#rstatmon.auth.LoginForm.check_validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates the sumbmitted form.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the form is valid, otherwise False.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.auth.LoginForm.password">
+<code class="sig-name descname"><span class="pre">password</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;UnboundField(PasswordField,</span> <span class="pre">('Password',),</span> <span class="pre">{})&gt;</span></em><a class="headerlink" href="#rstatmon.auth.LoginForm.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.auth.LoginForm.submit">
+<code class="sig-name descname"><span class="pre">submit</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;UnboundField(SubmitField,</span> <span class="pre">('Login',),</span> <span class="pre">{})&gt;</span></em><a class="headerlink" href="#rstatmon.auth.LoginForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.auth.LoginForm.username">
+<code class="sig-name descname"><span class="pre">username</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;UnboundField(StringField,</span> <span class="pre">('username',),</span> <span class="pre">{})&gt;</span></em><a class="headerlink" href="#rstatmon.auth.LoginForm.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.auth.LoginForm.validate_password">
+<code class="sig-name descname"><span class="pre">validate_password</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.auth.LoginForm.validate_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the submitted password is empty.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.auth.LoginForm.validate_username">
+<code class="sig-name descname"><span class="pre">validate_username</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">wtforms.fields.core.StringField</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.auth.LoginForm.validate_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the submitted username is empty.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="rstatmon.auth.RegistrationForm">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">rstatmon.auth.</span></code><code class="sig-name descname"><span class="pre">RegistrationForm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.auth.RegistrationForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_wtf.form.FlaskForm</span></code></p>
+<p>Form class for creating new account.</p>
+<dl class="py method">
+<dt id="rstatmon.auth.RegistrationForm.check_validate">
+<code class="sig-name descname"><span class="pre">check_validate</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span><a class="headerlink" href="#rstatmon.auth.RegistrationForm.check_validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates the sumbmitted form.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the form is valid, otherwise False.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.auth.RegistrationForm.confirm_password">
+<code class="sig-name descname"><span class="pre">confirm_password</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;UnboundField(PasswordField,</span> <span class="pre">('Confirm</span> <span class="pre">Password',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.DataRequired</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;wtforms.validators.EqualTo</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#rstatmon.auth.RegistrationForm.confirm_password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.auth.RegistrationForm.password">
+<code class="sig-name descname"><span class="pre">password</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;UnboundField(PasswordField,</span> <span class="pre">('Password',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.Length</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#rstatmon.auth.RegistrationForm.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.auth.RegistrationForm.submit">
+<code class="sig-name descname"><span class="pre">submit</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;UnboundField(SubmitField,</span> <span class="pre">('Sign</span> <span class="pre">Up',),</span> <span class="pre">{})&gt;</span></em><a class="headerlink" href="#rstatmon.auth.RegistrationForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.auth.RegistrationForm.username">
+<code class="sig-name descname"><span class="pre">username</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;UnboundField(StringField,</span> <span class="pre">('Username',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.Length</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#rstatmon.auth.RegistrationForm.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.auth.RegistrationForm.validate_password">
+<code class="sig-name descname"><span class="pre">validate_password</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">wtforms.fields.simple.PasswordField</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.auth.RegistrationForm.validate_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the submitted password is valid.</p>
+<dl class="simple">
+<dt>The password must satisfy following requirements.</dt><dd><ul class="simple">
+<li><p>Length is between 4 and 20.</p></li>
+<li><p>Contains only alphabets, numbers and symbols in ascii.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>password</strong> (<em>StringField</em>) – password field.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValidationError</strong> – Field is invalid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.auth.RegistrationForm.validate_username">
+<code class="sig-name descname"><span class="pre">validate_username</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">wtforms.fields.core.StringField</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.auth.RegistrationForm.validate_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the submitted username is valid.</p>
+<dl class="simple">
+<dt>The username must satisfy following requirements.</dt><dd><ul class="simple">
+<li><p>Length is between 2 and 30.</p></li>
+<li><p>Contains only alphabets, numbers and symbols in ascii.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>username</strong> (<em>StringField</em>) – Username field.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValidationError</strong> – Field is invalid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rstatmon.database">
+<span id="rstatmon-database-module"></span><h2>rstatmon.database module<a class="headerlink" href="#module-rstatmon.database" title="Permalink to this headline">¶</a></h2>
+<p>Module for accessing to databases.</p>
+<dl class="py class">
+<dt id="rstatmon.database.DBInit">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">rstatmon.database.</span></code><code class="sig-name descname"><span class="pre">DBInit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'root'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'localhost'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3306</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.DBInit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Initializing database to save user’s accounts.</p>
+<dl class="py method">
+<dt id="rstatmon.database.DBInit.add_admin">
+<code class="sig-name descname"><span class="pre">add_admin</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.DBInit.add_admin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an admin user if not exist.</p>
+<p>Adds the user if not exist in the table. The user is</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Username : admin</p></li>
+<li><p>Password : admin</p></li>
+<li><p>User ID : 000</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.database.DBInit.create_database">
+<code class="sig-name descname"><span class="pre">create_database</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.DBInit.create_database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates new database.</p>
+<p>The database named “raspi” is created with mysql.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.database.DBInit.create_table">
+<code class="sig-name descname"><span class="pre">create_table</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.DBInit.create_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates new table if not exist.</p>
+<p>The table named ‘user’ to store information about user’s account is created in the
+database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.database.DBInit.db_setup">
+<code class="sig-name descname"><span class="pre">db_setup</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.DBInit.db_setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.database.DBInit.read_json">
+<code class="sig-name descname"><span class="pre">read_json</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">js</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.DBInit.read_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="rstatmon.database.User">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">rstatmon.database.</span></code><code class="sig-name descname"><span class="pre">User</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.orm.decl_api.Model</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_login.mixins.UserMixin</span></code></p>
+<dl class="py method">
+<dt id="rstatmon.database.User.get_id">
+<code class="sig-name descname"><span class="pre">get_id</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.User.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.database.User.password">
+<code class="sig-name descname"><span class="pre">password</span></code><a class="headerlink" href="#rstatmon.database.User.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.database.User.user_id">
+<code class="sig-name descname"><span class="pre">user_id</span></code><a class="headerlink" href="#rstatmon.database.User.user_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.database.User.username">
+<code class="sig-name descname"><span class="pre">username</span></code><a class="headerlink" href="#rstatmon.database.User.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="rstatmon.database.User2">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">rstatmon.database.</span></code><code class="sig-name descname"><span class="pre">User2</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.User2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.orm.decl_api.Base</span></code></p>
+<dl class="py attribute">
+<dt id="rstatmon.database.User2.password">
+<code class="sig-name descname"><span class="pre">password</span></code><a class="headerlink" href="#rstatmon.database.User2.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.database.User2.user_id">
+<code class="sig-name descname"><span class="pre">user_id</span></code><a class="headerlink" href="#rstatmon.database.User2.user_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="rstatmon.database.User2.username">
+<code class="sig-name descname"><span class="pre">username</span></code><a class="headerlink" href="#rstatmon.database.User2.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="rstatmon.database.init_db">
+<code class="sig-prename descclassname"><span class="pre">rstatmon.database.</span></code><code class="sig-name descname"><span class="pre">init_db</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.init_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="rstatmon-db-setup-module">
+<h2>rstatmon.db_setup module<a class="headerlink" href="#rstatmon-db-setup-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-rstatmon.mylogger">
+<span id="rstatmon-mylogger-module"></span><h2>rstatmon.mylogger module<a class="headerlink" href="#module-rstatmon.mylogger" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="rstatmon.mylogger.MyLogger">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">rstatmon.mylogger.</span></code><code class="sig-name descname"><span class="pre">MyLogger</span></code><a class="headerlink" href="#rstatmon.mylogger.MyLogger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Logging class with loguru module.</p>
+<dl class="py method">
+<dt id="rstatmon.mylogger.MyLogger.get_log_dst">
+<code class="sig-name descname"><span class="pre">get_log_dst</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.mylogger.MyLogger.get_log_dst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the file to write log to.</p>
+<p>The format of the filename is   The log file is stored in the ‘data/log’ directory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.mylogger.MyLogger.logger_setup">
+<code class="sig-name descname"><span class="pre">logger_setup</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.mylogger.MyLogger.logger_setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.mylogger.MyLogger.write_log">
+<code class="sig-name descname"><span class="pre">write_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.mylogger.MyLogger.write_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes a message to log file.</p>
+<p>The message is written to the file determined in the ‘get_log_dst`. The
+logging level shows the importtance of the message and is classfied by
+as follows.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>info : Information</p></li>
+<li><p>success: Operation success such as login and logout</p></li>
+<li><p>error: Operation failure such as login and logout</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> (<em>str</em><em>)</em>) – A message to write</p></li>
+<li><p><strong>level</strong> (<em>str</em>) – Logging level</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rstatmon.passhash">
+<span id="rstatmon-passhash-module"></span><h2>rstatmon.passhash module<a class="headerlink" href="#module-rstatmon.passhash" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="rstatmon.passhash.init_bcrypt">
+<code class="sig-prename descclassname"><span class="pre">rstatmon.passhash.</span></code><code class="sig-name descname"><span class="pre">init_bcrypt</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.passhash.init_bcrypt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="rstatmon-routes-module">
+<h2>rstatmon.routes module<a class="headerlink" href="#rstatmon-routes-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="rstatmon-rstatmon-module">
+<h2>rstatmon.rstatmon module<a class="headerlink" href="#rstatmon-rstatmon-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-rstatmon.statdata">
+<span id="rstatmon-statdata-module"></span><h2>rstatmon.statdata module<a class="headerlink" href="#module-rstatmon.statdata" title="Permalink to this headline">¶</a></h2>
+<p>Module for accuiring statistical data</p>
+<dl class="py class">
+<dt id="rstatmon.statdata.Hardware">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">rstatmon.statdata.</span></code><code class="sig-name descname"><span class="pre">Hardware</span></code><a class="headerlink" href="#rstatmon.statdata.Hardware" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class about hardware information.</p>
+<dl class="py method">
+<dt id="rstatmon.statdata.Hardware.get_boot_time">
+<code class="sig-name descname"><span class="pre">get_boot_time</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.statdata.Hardware.get_boot_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the time when the system booted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The time system bboted in the format of %Y-%m-%d %H:%M:%S</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.Hardware.get_disk">
+<code class="sig-name descname"><span class="pre">get_disk</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">float</span><a class="headerlink" href="#rstatmon.statdata.Hardware.get_disk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets free space under the root direcotory ‘/’ in unit of GB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Disk space</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.Hardware.get_hard_info">
+<code class="sig-name descname"><span class="pre">get_hard_info</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#rstatmon.statdata.Hardware.get_hard_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the list of the hardware information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The hardware information.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.Hardware.get_kernel">
+<code class="sig-name descname"><span class="pre">get_kernel</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.statdata.Hardware.get_kernel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets kernel information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>kernel</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.Hardware.get_memory">
+<code class="sig-name descname"><span class="pre">get_memory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">float</span><a class="headerlink" href="#rstatmon.statdata.Hardware.get_memory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets memory size in unit of GB</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Memory size</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.Hardware.get_model">
+<code class="sig-name descname"><span class="pre">get_model</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.statdata.Hardware.get_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a model of the hardware</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is valid for only raspberry pi OS.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>String showing the model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.Hardware.get_operating_time">
+<code class="sig-name descname"><span class="pre">get_operating_time</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">float</span><a class="headerlink" href="#rstatmon.statdata.Hardware.get_operating_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the operating time in unit of hour.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The operating time.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.Hardware.get_os">
+<code class="sig-name descname"><span class="pre">get_os</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.statdata.Hardware.get_os" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets OS</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>OS</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="rstatmon.statdata.StatData">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">rstatmon.statdata.</span></code><code class="sig-name descname"><span class="pre">StatData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.statdata.StatData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.check_duration">
+<code class="sig-name descname"><span class="pre">check_duration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span><a class="headerlink" href="#rstatmon.statdata.StatData.check_duration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.check_input_params">
+<code class="sig-name descname"><span class="pre">check_input_params</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#rstatmon.statdata.StatData.check_input_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.check_yaxes">
+<code class="sig-name descname"><span class="pre">check_yaxes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span><a class="headerlink" href="#rstatmon.statdata.StatData.check_yaxes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.data_with_log">
+<code class="sig-name descname"><span class="pre">data_with_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pathlib.Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.statdata.StatData.data_with_log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_alldata">
+<code class="sig-name descname"><span class="pre">get_alldata</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_alldata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_core_freq">
+<code class="sig-name descname"><span class="pre">get_core_freq</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_core_freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the VC4 scaler cores frequency of the clock.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The VC4 scaler cores frequency</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_cpu_freq">
+<code class="sig-name descname"><span class="pre">get_cpu_freq</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_cpu_freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the CPU frequency of the clock.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The CPU frequency</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_cpu_memory">
+<code class="sig-name descname"><span class="pre">get_cpu_memory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_cpu_memory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the size of the memory currently allocated to the cpu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The memory size</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_cpu_temperature">
+<code class="sig-name descname"><span class="pre">get_cpu_temperature</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_cpu_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the CPU temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The CPU temperature</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_cpu_usage">
+<code class="sig-name descname"><span class="pre">get_cpu_usage</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_cpu_usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the current cpu usage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The usage of each cpu.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_csv">
+<code class="sig-name descname"><span class="pre">get_csv</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">pathlib.Path</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_csv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_dummydata">
+<code class="sig-name descname"><span class="pre">get_dummydata</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_dummydata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_gpu_memory">
+<code class="sig-name descname"><span class="pre">get_gpu_memory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_gpu_memory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the size of the memory currently allocated to the gpu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The memory size</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_loadavg">
+<code class="sig-name descname"><span class="pre">get_loadavg</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_loadavg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets load average.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The load averages of 1, 5, 15 minutes.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="rstatmon.statdata.routine">
+<code class="sig-prename descclassname"><span class="pre">rstatmon.statdata.</span></code><code class="sig-name descname"><span class="pre">routine</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.statdata.routine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-rstatmon.usermodel">
+<span id="rstatmon-usermodel-module"></span><h2>rstatmon.usermodel module<a class="headerlink" href="#module-rstatmon.usermodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="rstatmon.usermodel.JinjaTemplate">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">rstatmon.usermodel.</span></code><code class="sig-name descname"><span class="pre">JinjaTemplate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.JinjaTemplate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="rstatmon.usermodel.JinjaTemplate.load_body">
+<code class="sig-name descname"><span class="pre">load_body</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.JinjaTemplate.load_body" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.JinjaTemplate.load_template">
+<code class="sig-name descname"><span class="pre">load_template</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.JinjaTemplate.load_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.JinjaTemplate.make_template">
+<code class="sig-name descname"><span class="pre">make_template</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.JinjaTemplate.make_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.JinjaTemplate.parse_dict">
+<code class="sig-name descname"><span class="pre">parse_dict</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.JinjaTemplate.parse_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.JinjaTemplate.parse_int">
+<code class="sig-name descname"><span class="pre">parse_int</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.JinjaTemplate.parse_int" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.JinjaTemplate.remove_model">
+<code class="sig-name descname"><span class="pre">remove_model</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.JinjaTemplate.remove_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.JinjaTemplate.writer">
+<code class="sig-name descname"><span class="pre">writer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.JinjaTemplate.writer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="rstatmon.usermodel.UserModel">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">rstatmon.usermodel.</span></code><code class="sig-name descname"><span class="pre">UserModel</span></code><a class="headerlink" href="#rstatmon.usermodel.UserModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="rstatmon.usermodel.UserModel.execute">
+<code class="sig-name descname"><span class="pre">execute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pyfile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.execute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.UserModel.get_filename">
+<code class="sig-name descname"><span class="pre">get_filename</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.get_filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.UserModel.get_value">
+<code class="sig-name descname"><span class="pre">get_value</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.UserModel.register_file">
+<code class="sig-name descname"><span class="pre">register_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.register_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.UserModel.update">
+<code class="sig-name descname"><span class="pre">update</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rstatmon">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rstatmon" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, ogawa.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Stanford-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

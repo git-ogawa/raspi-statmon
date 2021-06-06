@@ -73,12 +73,12 @@ class Hardware():
         return datetime.fromtimestamp(psutil.boot_time()).strftime("%Y-%m-%d %H:%M:%S")
 
     def get_operating_time(self) -> float:
-        """Gets the operating time in unit of minutes.
+        """Gets the operating time in unit of hour.
 
         Returns:
             float: The operating time.
         """
-        return round(uptime.uptime() / 60, 0)
+        return round(uptime.uptime() / 60, 0 / 60.0)
 
     def get_hard_info(self) -> dict:
         """Gets the list of the hardware information.

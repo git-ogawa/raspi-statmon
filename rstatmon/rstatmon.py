@@ -15,7 +15,7 @@ from database import User, db, DBInit
 from statdata import routine
 from mylogger import MyLogger
 from usermodel import UserModel
-from app import app
+from application import app
 import routes
 
 
@@ -54,6 +54,12 @@ if __name__ == "__main__":
         type=str,
         help='python'
     )
+    parser.add_argument(
+        '-p',
+        '--password',
+        type=str,
+        help="password",
+    )
 
     args = parser.parse_args()
     if args.new:
@@ -64,13 +70,13 @@ if __name__ == "__main__":
 
     if args.create:
         try:
-            if not args.password:
-                print("Input the password :", end="")
-                args.password = input().strip()
-            DBInit(args.user, args.password).db_setup()
+            js = Path(__file__).resolve().parent / "config/database.json"
+            d = DBInit()
+            d.read_json(js)
+            d.db_setup()
         except:
             print(
-                "\033[31mFailed to create the database. Check the password.\033[0m",
+                "\033[31mFailed to create the database.\033[0m",
                 file=sys.stderr)
         finally:
             parser.exit()
