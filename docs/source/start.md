@@ -14,18 +14,17 @@ rstatmon
 └-- [others]
 ```
 
-
-`rstatmon.py`
+rstatmon.py
 : The main script that runs the server by `flask`
 
-`db_setup.py`
+db_setup.py
 : The script for database setup.
 
 
 
 ## Mysql setup 
 :::{note}
-If you have been already using mysql (or mariaDB), you can skip this step.
+If you have been already using mysql (or mariaDB), you can skip this step and proceed to [Database setup](#database-setup).
 :::
 This section describes the steps needed to use the database for the first time.
 
