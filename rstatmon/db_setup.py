@@ -27,19 +27,19 @@ if __name__ == '__main__':
         '--server',
         type=str,
         default="localhost",
-        help='server'
+        help='server name'
     )
     parser.add_argument(
         '-u',
         '--user',
         type=str,
         default="root",
-        help='user'
+        help='user name'
     )
     parser.add_argument(
         '-r',
         '--register',
-        help="Register",
+        help="Register user account to json",
         action='store_true'
     )
     args = parser.parse_args()

@@ -78,7 +78,7 @@ class Hardware():
         Returns:
             float: The operating time.
         """
-        return round(uptime.uptime() / 60, 0 / 60.0)
+        return round(uptime.uptime() / 60.0 / 60.0, 2)
 
     def get_hard_info(self) -> dict:
         """Gets the list of the hardware information.

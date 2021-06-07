@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Add user-defined model &mdash; Raspi-StatMon 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Raspi-StatMon 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="Appendix" href="appendix.html"/>
+        <link rel="prev" title="Getting started" href="start.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Raspi-StatMon
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Add user-defined model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-the-script">Prepare the script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#register-the-script">Register the script.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-new-model">Add new model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Raspi-StatMon</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Add user-defined model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/usermodel.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="add-user-defined-model">
+<h1>Add user-defined model<a class="headerlink" href="#add-user-defined-model" title="Permalink to this headline">¶</a></h1>
+<p>If you want to see the time variation of the another data  such as external temperature sensor, you can add the user-defined graph. In this chapter, we show the steps to add the model.</p>
+<div class="section" id="prepare-the-script">
+<h2>Prepare the script<a class="headerlink" href="#prepare-the-script" title="Permalink to this headline">¶</a></h2>
+<p>At first, you need to prepare a python script for getting the value to draw on the graph. The script must satisfy these requirements.</p>
+<ul class="simple">
+<li><p>The process to get the value needs to be included in single python script</p></li>
+<li><p>The filename of the script has suffix of <code class="docutils literal notranslate"><span class="pre">.py</span></code></p></li>
+<li><p>The value is output to stdout on single line and no other data should be output.</p></li>
+<li><p>The type of the value should be <code class="docutils literal notranslate"><span class="pre">int</span></code> or <code class="docutils literal notranslate"><span class="pre">float</span></code></p></li>
+</ul>
+<p>Here the simple example is shown. This file, whose file name is <code class="docutils literal notranslate"><span class="pre">radom_int.py</span></code>, will output a random value from 0 to 1 to the stdout by executing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And you should check that the script work as expected.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="n">random_int</span><span class="o">.</span><span class="n">py</span>
+<span class="go">0.21607009789064113</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="register-the-script">
+<h2>Register the script.<a class="headerlink" href="#register-the-script" title="Permalink to this headline">¶</a></h2>
+<p>The next step is to register the script you prepare to the rstatmon. To do this is simply executing the script with <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">&lt;script.py&gt;</span></code>. The following is the our case.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="n">rstatmon</span> <span class="o">-</span><span class="n">n</span> <span class="n">random_int</span><span class="o">.</span><span class="n">py</span>
+<span class="go">register : random_int.py</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-new-model">
+<h2>Add new model<a class="headerlink" href="#add-new-model" title="Permalink to this headline">¶</a></h2>
+<p>After registering, you can add the new graph from the user-model page. When log in to rstatmon and access the user-model page from the navigation on the left, you would see the page as shown below. The message telling there is no model is shown because you haven’t add the graph yet.</p>
+<div class="myclass figure align-default" id="fig-target">
+<a class="reference internal image-reference" href="_images/add.png"><img alt="_images/add.png" src="_images/add.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">The added model</span><a class="headerlink" href="#fig-target" title="Permalink to this image">¶</a></p>
+</div>
+<p>Clicking on the add tile will take you to a page where you can configure the settings for the graph you want to add. Select the graph settings you want to add, such as the axis range and scale. The defalut value is set in each box, but you can also set your own choice. Here are some of the terms needed to set up a graph.</p>
+<dl class="simple myst">
+<dt>datasets label</dt><dd><p>This means the name of label shown on top of the graph</p>
+</dd>
+<dt>label</dt><dd><p>This means the title shown in the user-model page after adding the graph.</p>
+</dd>
+<dt>streaming refresh</dt><dd><p>This means how often the data will be retrieved. The unit is millisecond. Setting this to 1000 corresponds to get the data at intervals of 1 second.</p>
+</dd>
+<dt>streaming duration</dt><dd><p>This means how long the data will be displayed in the graph. The unit is millisecond. Setting this to 10000 corresponds to the most recent 10 seconds of data being displayed on the graph.</p>
+</dd>
+</dl>
+<div class="myclass figure align-default" id="id1">
+<a class="reference internal image-reference" href="_images/prop.png"><img alt="_images/prop.png" src="_images/prop.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">The page of selecting some properties</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>After setting the value, then click <code class="docutils literal notranslate"><span class="pre">submit</span></code> button to save the values. If all the values are valid, you will be redirected to the results page. The new graph is added and updated in the user-model page.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>After completing the step, you need to restart the server, otherwise the change doesn’t reflect the webpage. To restart, just abort the app by entering <code class="docutils literal notranslate"><span class="pre">ctrl+C</span></code> and then run the app again.</p>
+</div>
+<div class="myclass figure align-default" id="id2">
+<a class="reference internal image-reference" href="_images/new_model.png"><img alt="_images/new_model.png" src="_images/new_model.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">The newly added graph</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>If you want to change the model, click <code class="docutils literal notranslate"><span class="pre">remove</span> <span class="pre">the</span> <span class="pre">model</span></code> to delete the current graph then repeate the above steps.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You should restart the server after removing the current model as when add the graph.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="appendix.html" class="btn btn-neutral float-right" title="Appendix" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="start.html" class="btn btn-neutral" title="Getting started" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, ogawa.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Stanford-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -45,22 +45,15 @@ if __name__ == "__main__":
     parser.add_argument(
         '-c',
         '--create',
-        help="create",
+        help="Create a new database, table and admin user.",
         action='store_true'
     )
     parser.add_argument(
         '-n',
         '--new',
         type=str,
-        help='python'
+        help='Register a new user-defined model.'
     )
-    parser.add_argument(
-        '-p',
-        '--password',
-        type=str,
-        help="password",
-    )
-
     args = parser.parse_args()
     if args.new:
         model = UserModel()

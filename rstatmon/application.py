@@ -1,14 +1,25 @@
 import json
+import sys
+from json.decoder import JSONDecodeError
 from pathlib import Path
 from flask import Flask
-from database import init_db
+
 from passhash import init_bcrypt
+from database import init_db
 
 
 def create_app():
     j = Path(__file__).resolve().parent / "config/database.json"
-    with open(j, "r") as f:
-        json_data = json.load(f)
+    try:
+        with open(j, "r") as f:
+            json_data = json.load(f)
+    except JSONDecodeError:
+        print(
+            "\033[31mFailed to open the json. Create the json by executing db_setup.py\033[0m",
+            file=sys.stderr
+        )
+        sys.exit(-1)
+
     username = json_data["username"]
     password = json_data["password"]
     server = json_data["server"]

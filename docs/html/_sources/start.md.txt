@@ -176,7 +176,7 @@ The update cycle of the graphs is 1 seconds. The duration displayed on each grap
 
 
 ## Graph setting
-In setting page, you can change the settings of the graphs. To change the current settings, input the value in each box, then click save button to submit the form. If the input values are valid, a message will appear letting you know that the changes are accepted, then the graphs on the home page will be updated.
+In setting page, you can change the settings of the graphs. To change the current settings, input the value in each box, then click save button to submit the form. If the input values are valid, a message will appear letting you know that the changes are accepted, then the graphs on the home page will be updated. 
 
 
 | Field | Attribute | Type | Description |
@@ -186,4 +186,21 @@ In setting page, you can change the settings of the graphs. To change the curren
 | y-axes | step | int | Step size of tick in y axis | 
 | streaming | duration | int | The duration that the data will be displayed on the graph | 
 
+The acceptable range of these values is as follows
+
+- min, max and step
+
+| Graph       | Range     |
+| :---------- | :-------- |
+| temperature | 0 ~ 1000  |
+| usage       | 0 ~ 1000  |
+| memory      | 0 ~ 10000 |
+| frequency   | 0 ~ 10000 |
+| usage       | 0 ~ 100   |
+
+- duration
+
+| Graph | Range         |
+| :---- | :------------ |
+| all   | 1000 ~ 600000 |
 
