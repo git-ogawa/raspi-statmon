@@ -1,7 +1,4 @@
 {
-    "user_model": [
-        "aaa",
-        "random_int"
-    ],
-    "current_model": "random_int"
+    "user_model": [],
+    "current_model": ""
 }

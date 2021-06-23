@@ -1,5 +1,5 @@
 {
-    "model": "random_int",
+    "model": "",
     "datasets": {
         "label": "data1",
         "color": "red"

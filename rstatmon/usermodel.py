@@ -221,4 +221,3 @@ class JinjaTemplate():
 
     def remove_model(self):
         shutil.copy(self.org, self.dst)
-

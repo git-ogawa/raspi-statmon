@@ -9,12 +9,10 @@ from multiprocessing import Process
 from flask_login import LoginManager
 from pathlib import Path
 
-from database import User, db, DBInit
+from database import User, DBInit
 from statdata import routine
-from mylogger import MyLogger
 from usermodel import UserModel
 from application import app
-import routes
 
 
 login_manager = LoginManager(app)
