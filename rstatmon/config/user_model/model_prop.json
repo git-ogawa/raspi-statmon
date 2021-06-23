@@ -1,6 +1,7 @@
 {
+    "model": "random_int",
     "datasets": {
-        "label": "random",
+        "label": "data1",
         "color": "red"
     },
     "label": "user_defined",
@@ -12,10 +13,10 @@
     "yaxes": {
         "fontsize": 16,
         "ticksize": 16,
-        "label": "int",
-        "min": "0.1",
-        "max": 1,
-        "step": "0.1"
+        "label": "",
+        "min": 0,
+        "max": 100,
+        "step": 20
     },
     "streaming": {
         "refresh": 1000,

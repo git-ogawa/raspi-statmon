@@ -11,6 +11,29 @@
                         Select graph properties
                     </p>
                     <label class="label has-text-white is-large has-text-left">
+                        Model
+                    </label>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label has-text-white">
+                                Model name
+                            </label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <p class="control">
+                                    <select id="model" name="model" style="width: 200%; height: 35px;">
+                                        {% for model in model_list %}
+                                        <option value="{{ model }}" name="{{ model }}">
+                                            {{ model }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="label has-text-white is-large has-text-left">
                         datasets
                     </label>
                     <div class="field is-horizontal">

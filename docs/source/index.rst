@@ -19,6 +19,8 @@ You can also add a graph to monitor the data obtained from the external sensor c
    installation
    start
    usermodel
+   logplot
+   colortheme
    appendix
    changelog
 

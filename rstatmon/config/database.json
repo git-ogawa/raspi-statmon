@@ -1,0 +1,7 @@
+{
+    "username": "ogawa",
+    "password": "burninghearts",
+    "server": "localhost",
+    "port": "3306",
+    "db_name": "raspi"
+}

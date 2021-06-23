@@ -3,10 +3,10 @@
 import json
 from pathlib import Path
 
-from flask import render_template, url_for, flash, redirect, request, jsonify, abort
-from flask_login import (
-    login_user, current_user, logout_user, login_required, LoginManager
+from flask import (
+    render_template, url_for, flash, redirect, request, jsonify, abort, session
 )
+from flask_login import login_user, current_user, logout_user, login_required
 
 from mylogger import MyLogger
 from statdata import Hardware, StatData
@@ -15,11 +15,14 @@ from database import User
 from passhash import bcrypt
 from database import db
 from usermodel import UserModel, JinjaTemplate
+from session_manager import Session
+from general import Settings, Bulma
 from application import app
 
 
 @app.route("/")
 def root():
+    Settings().set_color_theme()
     return redirect(url_for("login"))
 
 
@@ -96,6 +99,7 @@ def home():
     settings = Path(__file__).resolve().parent / "config/settings/settings.json"
     with open(settings, "r") as f:
         json_data = json.load(f)
+        Session.set_session("graph", json_data)
     return render_template("home.html", title="Home", data=info, graph=json_data)
 
 
@@ -125,7 +129,12 @@ def model_value():
 @app.route('/add')
 @login_required
 def add():
-    return render_template('add_pyfile.html', title='add_pyfile')
+    model = UserModel()
+    model_name = model.models
+    return render_template(
+        'add_pyfile.html',
+        title='add_pyfile',
+        model_list=model_name)
 
 
 @app.route("/add_graph", methods=["GET", "POST"])
@@ -144,6 +153,7 @@ def add_graph():
 def remove_model():
     j = JinjaTemplate(request.form)
     j.remove_model()
+    UserModel().remove_current_model()
     msg = "The current model has been removed."
     return render_template('result.html', title='result', msg=msg)
 
@@ -183,6 +193,10 @@ def change_settings():
 
     with open(settings, "w") as f:
         json.dump(json_data, f, ensure_ascii=False, indent=4)
+    # update settings
+    with open(settings, "r") as f:
+        json_data = json.load(f)
+        Session.set_session("graph", json_data)
     msg = {chart_type: "Successsfully changed."}
     MyLogger().write_log("{} : changed settings".format(request.remote_addr), "success")
     return render_template(
@@ -235,3 +249,57 @@ def delete():
         return render_template("delete.html", title="Delete account", form=users)
 
 
+@app.route("/theme", methods=["POST", "GET"])
+@login_required
+def theme():
+    if request.method == "POST":
+        print(request.form)
+        color = request.form.get("color")
+        emp = request.form.get("emp")
+        theme = request.form.get("theme")
+        label = request.form.get("label")
+        b = Bulma()
+        b.set_color(color)
+        color_name = b.get_bulma_color(color)
+        setting = Settings()
+        setting.write_color_theme(color_name, emp, label, theme)
+        setting.set_color_theme()
+
+    colors, themes = Bulma().get_colors()
+    return render_template("setting_theme.html", colors=colors, themes=themes)
+
+
+@app.route("/plot", methods=["POST", "GET"])
+@login_required
+def plot():
+    days = StatData().exist_logs()
+    return render_template("calendar.html", date_list=days, result={})
+
+
+@app.route("/plot_data", methods=["POST"])
+@login_required
+def plot_data():
+    if request.method == "POST":
+        date = request.form.get("date")
+        rate = request.form.get("rate")
+        unit = request.form.get("unit")
+        start = request.form.get("start")
+        end = request.form.get("end")
+
+        start_hour = int(start[0])
+        start_min = int(start[1])
+        end_hour = int(end[0])
+        end_min = int(end[1])
+
+        stat = StatData()
+        sampling_rate = stat.get_sampling_rate(rate, unit)
+        json_data = stat.read_log(stat.get_date(date), sampling_rate)
+        year, month, day = stat.get_date(date, True)
+        json_data["year"] = int(year)
+        json_data["month"] = int(month)
+        json_data["day"] = int(day)
+        json_data["start"] = f"{year}-{month}-{day} {start}:00"
+        json_data["end"] = f"{year}-{month}-{day} {end}:00"
+        days = StatData().exist_logs()
+        return render_template("calendar.html", date_list=days, result=json_data)
+    return render_template("calendar.html", date_list=days)

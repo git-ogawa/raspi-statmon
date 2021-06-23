@@ -5,7 +5,7 @@
 <div class="column is-5 is-offset-2">
     <div class="block">
         <div class="box has-background-grey-dark">
-            <h1 class="title is-2">
+            <h1 class="title is-2 has-text-{{ session['label_font_color'] }}">
                 Change chart properties
             </h1>
             <div class="block">
@@ -19,7 +19,7 @@
         <div class="block is-dark">
             <form id="temperature" action="/change_settings" method="POST">
                 <div class="container is-large">
-                    <h2 class="title has-text-left">
+                    <h2 class="title has-text-left has-text-{{ session['label_font_color'] }}">
                         CPU temperature
                     </h2>
                     <label class="label has-text-white is-large has-text-left">
@@ -112,7 +112,7 @@
         <div class="block is-dark">
             <form id="usage" action="/change_settings" method="POST">
                 <div class="container is-large">
-                    <h2 class="title is-3">
+                    <h2 class="title is-3 has-text-{{ session['label_font_color'] }}">
                             CPU Usage
                     </h2>
                     <label class="label has-text-white is-large is-offset-4">
@@ -205,7 +205,7 @@
         <div class="block is-dark">
             <form id="memory" action="/change_settings" method="POST">
                 <div class="container is-large">
-                    <h2 class="title has-text-left">
+                    <h2 class="title has-text-left has-text-{{ session['label_font_color'] }}">
                         Memory
                     </h2>
                     <label class="label has-text-white is-large has-text-left">
@@ -298,7 +298,7 @@
         <div class="block is-dark">
             <form id="frequency" action="/change_settings" method="POST">
                 <div class="container is-large">
-                    <h2 class="title has-text-left">
+                    <h2 class="title has-text-left has-text-{{ session['label_font_color'] }}">
                         frequency
                     </h2>
                     <label class="label has-text-white is-large has-text-left">
@@ -391,7 +391,7 @@
         <div class="block is-dark">
             <form id="loadavg" action="/change_settings" method="POST">
                 <div class="container is-large">
-                    <h2 class="title has-text-left">
+                    <h2 class="title has-text-left has-text-{{ session['label_font_color'] }}">
                         Load average
                     </h2>
                     <label class="label has-text-white is-large has-text-left">

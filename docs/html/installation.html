@@ -83,9 +83,16 @@
             
                 <p class="caption"><span class="caption-text">Table of Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-project">The project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mysql">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pandas">pandas</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="start.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usermodel.html">Add user-defined model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logplot.html">Plot the past data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colortheme.html">Color theme</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">changelog</a></li>
 </ul>
@@ -153,6 +160,8 @@
             
   <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-project">
+<h2>The project<a class="headerlink" href="#the-project" title="Permalink to this headline">¶</a></h2>
 <p>The program is single python script so that you just clone the repository in your local machine by <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/git-ogawa/raspi-statmon.git
 </pre></div>
@@ -161,6 +170,9 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/git-ogawa/raspi-statmon.git
 </pre></div>
 </div>
+</div>
+<div class="section" id="mysql">
+<h2>MySQL<a class="headerlink" href="#mysql" title="Permalink to this headline">¶</a></h2>
 <p>The project uses MySQL, so install them with apt</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">mysql</span><span class="o">-</span><span class="n">server</span>
 </pre></div>
@@ -168,6 +180,14 @@
 <p>you maybe can’t install mysql in the version of your machine. In that case, try to install mariaDB instead.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">mariadb</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="mf">10.0</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="pandas">
+<h2>pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
+<p>The prohect uses <code class="docutils literal notranslate"><span class="pre">pandas</span></code> but the installation by pip doesn’t seem to be working in raspberry pi OS. Thus, Install by following with apt.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">pandas</span>
+</pre></div>
+</div>
 </div>
 </div>
 

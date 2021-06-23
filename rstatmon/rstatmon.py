@@ -2,11 +2,9 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-import json
 import argparse
 import signal
 import psutil
-import shutil
 from multiprocessing import Process
 from flask_login import LoginManager
 from pathlib import Path
@@ -57,7 +55,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.new:
         model = UserModel()
-        model.register_file(args.new)
+        model.register_model(args.new)
         print("register :", args.new)
         parser.exit()
 

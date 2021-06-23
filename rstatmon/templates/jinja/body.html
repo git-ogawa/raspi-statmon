@@ -13,6 +13,13 @@
     <div class="section is-offset-3">
         <div class="tile is-ancestor has-text-centered">
             <div class="tile is-parent is-3">
+                <a class="tile link" href="{{ url_for('add') }}">
+                    <div class="tile is-child notification is-info">
+                        <p class="title is-size-5">Change current model</p>
+                    </div>
+                </a>
+            </div>
+            <div class="tile is-parent is-3">
                 <a class="tile link" href="{{ url_for('remove_model') }}">
                     <div class="tile is-child notification is-danger">
                         <p class="title is-size-5">Remove current model</p>
@@ -23,10 +30,9 @@
     </div>
 </div>
 {%- endraw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.0/chart.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@latest/dist/chartjs-plugin-streaming.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@1.9.0/dist/chartjs-plugin-streaming.min.js"></script>
 <script>
     var chartColors = {
         red: 'rgb(255, 99, 132)',
@@ -163,7 +169,7 @@
     Chart.plugins.register({
     beforeDraw: function(chartInstance) {
         var ctx = chartInstance.chart.ctx;
-        ctx.fillStyle = "rgba(50, 50, 50, 1)";
+        ctx.fillStyle = "#282f2f";
         ctx.fillRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
     }
 })

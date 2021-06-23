@@ -99,6 +99,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usermodel.html">Add user-defined model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logplot.html">Plot the past data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colortheme.html">Color theme</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">changelog</a></li>
 </ul>
@@ -178,9 +180,9 @@ the web browser step by step.</p>
 </pre></div>
 </div>
 <dl class="simple myst">
-<dt><code class="docutils literal notranslate"><span class="pre">rstatmon.py</span></code></dt><dd><p>The main script that runs the server by <code class="docutils literal notranslate"><span class="pre">flask</span></code></p>
+<dt><a class="reference external" href="http://rstatmon.py">rstatmon.py</a></dt><dd><p>The main script that runs the server by <code class="docutils literal notranslate"><span class="pre">flask</span></code></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">db_setup.py</span></code></dt><dd><p>The script for database setup.</p>
+<dt>db_setup.py</dt><dd><p>The script for database setup.</p>
 </dd>
 </dl>
 </div>
@@ -188,7 +190,7 @@ the web browser step by step.</p>
 <h2>Mysql setup<a class="headerlink" href="#mysql-setup" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you have been already using mysql (or mariaDB), you can skip this step.</p>
+<p>If you have been already using mysql (or mariaDB), you can skip this step and proceed to <a class="reference external" href="#database-setup">Database setup</a>.</p>
 </div>
 <p>This section describes the steps needed to use the database for the first time.</p>
 <div class="section" id="disable-unix-socket">
@@ -198,15 +200,15 @@ the web browser step by step.</p>
 </pre></div>
 </div>
 <p>If you can log in, you will see the following message.</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 11
-Server version: 10.0.28-MariaDB-2+b1 Raspbian testing-staging
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Welcome</span> <span class="n">to</span> <span class="n">the</span> <span class="n">MariaDB</span> <span class="n">monitor</span><span class="o">.</span>  <span class="n">Commands</span> <span class="n">end</span> <span class="k">with</span> <span class="p">;</span> <span class="ow">or</span> \<span class="n">g</span><span class="o">.</span>
+<span class="n">Your</span> <span class="n">MariaDB</span> <span class="n">connection</span> <span class="nb">id</span> <span class="ow">is</span> <span class="mi">11</span>
+<span class="n">Server</span> <span class="n">version</span><span class="p">:</span> <span class="mf">10.0</span><span class="o">.</span><span class="mi">28</span><span class="o">-</span><span class="n">MariaDB</span><span class="o">-</span><span class="mi">2</span><span class="o">+</span><span class="n">b1</span> <span class="n">Raspbian</span> <span class="n">testing</span><span class="o">-</span><span class="n">staging</span>
 
-Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2016</span><span class="p">,</span> <span class="n">Oracle</span><span class="p">,</span> <span class="n">MariaDB</span> <span class="n">Corporation</span> <span class="n">Ab</span> <span class="ow">and</span> <span class="n">others</span><span class="o">.</span>
 
-Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+<span class="n">Type</span> <span class="s1">&#39;help;&#39;</span> <span class="ow">or</span> <span class="s1">&#39;\h&#39;</span> <span class="k">for</span> <span class="n">help</span><span class="o">.</span> <span class="n">Type</span> <span class="s1">&#39;\c&#39;</span> <span class="n">to</span> <span class="n">clear</span> <span class="n">the</span> <span class="n">current</span> <span class="nb">input</span> <span class="n">statement</span><span class="o">.</span>
 
-MariaDB [(none)]&gt; 
+<span class="n">MariaDB</span> <span class="p">[(</span><span class="n">none</span><span class="p">)]</span><span class="o">&gt;</span> 
 </pre></div>
 </div>
 <p>Next, make sure that unix sock is enabled. To do this, type <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">mysql;</span></code>, then <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">host,user,password,plugin</span> <span class="pre">from</span> <span class="pre">user;</span></code></p>
@@ -302,7 +304,7 @@ MariaDB [(none)]&gt;
 <p>This settings is stored as the json file in the <code class="docutils literal notranslate"><span class="pre">config/database.json</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>When creating the database, login as root user with the password. If you have’t set up yet, you need setup before this step.</p>
+<p>When creating the database, login as root user with the password. If you have’t set up yet, you need setup before this step (see <a class="reference external" href="#set-the-password-for-the-root-user">Set the password for the root user</a>).</p>
 </div>
 <p>Next, Execute <code class="docutils literal notranslate"><span class="pre">rstatmon.py</span></code> with <code class="docutils literal notranslate"><span class="pre">-c</span></code> option to create database and table for managing users.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt; python rstatmon.py -c

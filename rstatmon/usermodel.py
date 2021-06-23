@@ -1,42 +1,148 @@
+import sys
 import shutil
 import json
 import subprocess
+from typing import Union
 from pathlib import Path
 from jinja2 import Template
 
 
 class UserModel():
+    """Handles user-defined model described in python scripts.
+    """
 
     def __init__(self):
         self.parent = Path(__file__).resolve().parent
         self.dst = self.parent / "config/user_model/"
-        self.json = self.dst / "user_model.json"
-        self.pyname_key = "user_model"
+        self.model_json = self.dst / "user_model.json"
+        self.user_model_key = "user_model"
+        self.current_model_key = "current_model"
+        self.models = []
+        self.import_models()
 
-    def register_file(self, src: str):
+    def register_model(self, src: str):
+        """Register a specified model as new one.
+
+        Args:
+            src (str): The file path to register.
+        """
         src_abs = Path(src).resolve()
+        self.validate_model(src_abs)
         shutil.copy(src_abs, self.dst)
-        self.update(src)
+        self.set_current_model(src_abs)
+        self.update_json()
 
-    def update(self, src: str):
-        data = {self.pyname_key: src}
-        with open(str(self.json), "w") as f:
-            json.dump(data, f, indent=4)
+    def delete_model(self, src: str):
+        """Delete python file corresponding to model in the dst dir.
+
+        Args:
+            src (str): File name of python to delete
+        """
+        path = self.parent / src
+        if path.exists():
+            path.unlink(src)
+        self.update_json()
+
+    def validate_model(self, path: Path) -> bool:
+        if path.suffix != ".py":
+            print(
+                "\033[31mThe file you're trying to add have no suffix 'py'\033[0m",
+                file=sys.stderr)
+            sys.exit(-1)
+        cmd = f"python {path}"
+        ret = subprocess.check_output(cmd.split()).decode("utf-8").strip("\n")
+        try:
+            f = float(ret)
+            int(f)
+            return True
+        except ValueError:
+            print(
+                "\033[31mThe type of return value isn't int or float\033[0m",
+                file=sys.stderr)
+            sys.exit(-1)
+
+    def update_json(self):
+        """Update model json
+
+        Json consists of key and value. In case of "test.py" model, key and
+        value are as follows respectively.
+        test : test.py
+
+        """
+        files = list(self.dst.glob("*.py"))
+        contens = {}
+        tmp = []
+        for i in files:
+            tmp.append(str(i.stem))
+        contens[self.user_model_key] = tmp
+
+        # load the current model in json
+        current = self.get_current_model()
+        if current:
+            contens["current_model"] = str(Path(current).stem)
+        else:
+            contens["current_model"] = ""
+
+        # write the registered models and current model into json
+        with open(str(self.model_json), "w") as f:
+            json.dump(contens, f, indent=4)
+
+    def set_current_model(self, model: Union[Path, str]):
+        if type(model) == str:
+            pass
+        else:
+            model = str(model.stem)
+        if self.model_json.exists():
+            with open(str(self.model_json), "r") as f:
+                j = json.load(f)
+                j[self.current_model_key] = model
+            with open(str(self.model_json), "w") as f:
+                json.dump(j, f, indent=4)
+
+    def remove_current_model(self):
+        if self.model_json.exists():
+            with open(str(self.model_json), "r") as f:
+                j = json.load(f)
+                j[self.current_model_key] = ""
+            with open(str(self.model_json), "w") as f:
+                json.dump(j, f, indent=4)
+
+    def import_models(self) -> list:
+        if self.model_json.exists():
+            with open(str(self.model_json), "r") as f:
+                j = json.load(f)
+                self.models = j[self.user_model_key]
+                return self.models
+        return []
 
     def get_value(self):
-        f = self.get_filename()
+        f = self.get_current_model()
         return self.execute(f)
 
-    def get_filename(self) -> str:
-        if self.json.exists():
-            with open(str(self.json), "r") as f:
+    def get_current_model(self) -> str:
+        """Gets a file name corresponding to the model.
+
+        Returns:
+            str: The file name in the format of abs path.
+        """
+        if self.model_json.exists():
+            with open(str(self.model_json), "r") as f:
                 j = json.load(f)
-            self.py_name = j[self.pyname_key]
-            self.py_file = self.parent / self.py_name
-            return str(self.py_file)
+            if self.current_model_key in j:
+                current_model = j[self.current_model_key]
+                if current_model:
+                    self.py_file = self.parent / current_model
+                    return str(self.py_file)
         return None
 
     def execute(self, pyfile: str):
+        """Execute model file.
+
+        Args:
+            pyfile (str): The model file.
+        """
+        if Path(pyfile).suffix != ".py":
+            pyfile += ".py"
         cmd = f"python {pyfile}"
         ret = subprocess.check_output(cmd.split()).decode("utf-8").strip("\n")
         return ret
@@ -106,6 +212,7 @@ class JinjaTemplate():
         self.parse_dict()
         body = self.load_body()
         html = self.load_template(body)
+        UserModel().set_current_model(self.data["model"])
         self.writer(html)
 
     def writer(self, data: str):

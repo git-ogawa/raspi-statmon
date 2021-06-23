@@ -84,6 +84,8 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="start.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usermodel.html">Add user-defined model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logplot.html">Plot the past data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colortheme.html">Color theme</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">changelog</a></li>
 </ul>
@@ -411,6 +413,12 @@ database.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="rstatmon.mylogger.MyLogger.log_compress">
+<code class="sig-name descname"><span class="pre">log_compress</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.mylogger.MyLogger.log_compress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compress log file to tar.gz</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="rstatmon.mylogger.MyLogger.logger_setup">
 <code class="sig-name descname"><span class="pre">logger_setup</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.mylogger.MyLogger.logger_setup" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -604,6 +612,16 @@ as follows.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt id="rstatmon.statdata.StatData.digit_format">
+<code class="sig-name descname"><span class="pre">digit_format</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">list</span><a class="headerlink" href="#rstatmon.statdata.StatData.digit_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.exist_logs">
+<code class="sig-name descname"><span class="pre">exist_logs</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">list</span><a class="headerlink" href="#rstatmon.statdata.StatData.exist_logs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="rstatmon.statdata.StatData.get_alldata">
 <code class="sig-name descname"><span class="pre">get_alldata</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_alldata" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -684,6 +702,24 @@ as follows.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_date">
+<code class="sig-name descname"><span class="pre">get_date</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ret_date</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts string showing the specified date into abs path if exists.</p>
+<p>The path should be in the format of yyyymmdd.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="rstatmon.statdata.StatData.get_dummydata">
 <code class="sig-name descname"><span class="pre">get_dummydata</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_dummydata" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -715,6 +751,34 @@ as follows.</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.get_sampling_rate">
+<code class="sig-name descname"><span class="pre">get_sampling_rate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.statdata.StatData.get_sampling_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the string for data resampling.</p>
+<p>The input string showing the time rate is parsed to get the string specified
+with the resample method in pandas. The parsed string is splited into num
+and str, showing the time and unit respectively. Finally,</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rate</strong> (<em>str</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>&gt;&gt; parser_sample_rate(“1hour”)
+&gt;&gt; “1h”</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.read_log">
+<code class="sig-name descname"><span class="pre">read_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#rstatmon.statdata.StatData.read_log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -771,15 +835,42 @@ as follows.</p>
 <dt id="rstatmon.usermodel.UserModel">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">rstatmon.usermodel.</span></code><code class="sig-name descname"><span class="pre">UserModel</span></code><a class="headerlink" href="#rstatmon.usermodel.UserModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Handles user-defined model described in python scripts.</p>
+<dl class="py method">
+<dt id="rstatmon.usermodel.UserModel.delete_model">
+<code class="sig-name descname"><span class="pre">delete_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.delete_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete python file corresponding to model in the dst dir.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>src</strong> (<em>str</em>) – File name of python to delete</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="rstatmon.usermodel.UserModel.execute">
 <code class="sig-name descname"><span class="pre">execute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pyfile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.execute" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Execute model file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pyfile</strong> (<em>str</em>) – The model file.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
-<dt id="rstatmon.usermodel.UserModel.get_filename">
-<code class="sig-name descname"><span class="pre">get_filename</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.get_filename" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="rstatmon.usermodel.UserModel.get_current_model">
+<code class="sig-name descname"><span class="pre">get_current_model</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.get_current_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a file name corresponding to the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The file name in the format of abs path.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="rstatmon.usermodel.UserModel.get_value">
@@ -787,13 +878,43 @@ as follows.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="rstatmon.usermodel.UserModel.register_file">
-<code class="sig-name descname"><span class="pre">register_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.register_file" title="Permalink to this definition">¶</a></dt>
+<dt id="rstatmon.usermodel.UserModel.import_models">
+<code class="sig-name descname"><span class="pre">import_models</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">list</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.import_models" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="rstatmon.usermodel.UserModel.update">
-<code class="sig-name descname"><span class="pre">update</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.update" title="Permalink to this definition">¶</a></dt>
+<dt id="rstatmon.usermodel.UserModel.register_model">
+<code class="sig-name descname"><span class="pre">register_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.register_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a specified model as new one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>src</strong> (<em>str</em>) – The file path to register.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.UserModel.remove_current_model">
+<code class="sig-name descname"><span class="pre">remove_current_model</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.remove_current_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.UserModel.set_current_model">
+<code class="sig-name descname"><span class="pre">set_current_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.set_current_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.UserModel.update_json">
+<code class="sig-name descname"><span class="pre">update_json</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.update_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update model json</p>
+<p>Json consists of key and value. In case of “test.py” model, key and
+value are as follows respectively.
+test : test.py</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.usermodel.UserModel.validate_model">
+<code class="sig-name descname"><span class="pre">validate_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pathlib.Path</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span><a class="headerlink" href="#rstatmon.usermodel.UserModel.validate_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

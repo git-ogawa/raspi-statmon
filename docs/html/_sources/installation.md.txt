@@ -1,6 +1,8 @@
 Installation
 ============
 
+## The project
+
 The program is single python script so that you just clone the repository in your local machine by `git clone`. 
 ```bash
 git clone https://github.com/git-ogawa/raspi-statmon.git
@@ -10,6 +12,8 @@ However, you need install the dependent packages. If you haven't installed the p
 pip install git+https://github.com/git-ogawa/raspi-statmon.git
 ```
 
+## MySQL
+
 The project uses MySQL, so install them with apt
 ```
 sudo apt install mysql-server
@@ -17,4 +21,10 @@ sudo apt install mysql-server
 you maybe can't install mysql in the version of your machine. In that case, try to install mariaDB instead.
 ```
 sudo apt install mariadb-server-10.0
+```
+
+## pandas
+The prohect uses `pandas` but the installation by pip doesn't seem to be working in raspberry pi OS. Thus, Install by following with apt.
+```
+sudo apt-get install python3-pandas
 ```

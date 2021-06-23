@@ -8,6 +8,8 @@ import uptime
 import random
 import time
 import csv
+import re
+import pandas as pd
 from pathlib import Path
 from typing import Tuple, Union
 
@@ -101,6 +103,7 @@ class Hardware():
 class StatData():
 
     def __init__(self, debug: bool = False):
+        self.root_dir = Path(__file__).resolve().parent / "data/stat_data"
         self.debug = debug
 
     def get_cpu_temperature(self) -> str:
@@ -223,9 +226,19 @@ class StatData():
             self.func = self.get_alldata
         json_data = self.func()
         values = list(json_data.values())
+        values = self.digit_format(values)
         with open(str(dst), "a") as f:
             w = csv.writer(f)
             w.writerow(values)
+
+    def digit_format(self, lst: list) -> list:
+        dst = []
+        for val in lst:
+            try:
+                dst.append(f"{val:.2f}")
+            except:
+                dst.append(val)
+        return dst
 
     def get_csv(self) -> Path:
         data_root = Path(__file__).resolve().parent / "data/stat_data"
@@ -305,6 +318,80 @@ class StatData():
             return True
         else:
             return False
+
+    def exist_logs(self) -> list:
+        lst = []
+        for f in self.root_dir.glob("**/*"):
+            if f.is_file():
+                filename = f.stem
+                lst.append(str(filename))
+        return lst
+
+    def get_date(self, path: str, ret_date: bool = False) -> str:
+        """Converts string showing the specified date into abs path if exists.
+
+        The path should be in the format of yyyymmdd.
+
+        Args:
+            path (str): [description]
+
+        Returns:
+            str: [description]
+        """
+        if "/" in path:
+            month = path[0:2]
+            day = path[3:5]
+            year = path[6:]
+            path = f"{year}{month}{day}"
+            if ret_date:
+                return year, month, day
+        date = self.root_dir / path[:-2]
+        if date.exists():
+            date2 = date / f"{path}.csv"
+            if date2.exists():
+                return date2.resolve()
+        return None
+
+    def read_log(self, path: str, rate: str) -> dict:
+        df = pd.read_csv(path)
+        t = pd.to_datetime(df.iloc[:, 0], format="%y%m%d-%H:%M:%S")
+        df = df.set_index(t)
+        df.drop("current_time", axis=1, inplace=True)
+        # Resamples data by the specified rate.
+        df = df.resample(rate).mean()
+        dct = {}
+        # add timestamp
+        dct[df.index.name] = [str(i) for i in df.index]
+        # add the rest data
+        for i, col in enumerate(df):
+            dct[col] = list(df.iloc[:, i])
+        return dct
+
+    def get_sampling_rate(self, num: str, unit: str) -> str:
+        """Parses the string for data resampling.
+
+        The input string showing the time rate is parsed to get the string specified
+        with the resample method in pandas. The parsed string is splited into num
+        and str, showing the time and unit respectively. Finally,
+
+        Args:
+            rate (str): [description]
+
+        Returns:
+            str: [description]
+
+        Examples:
+            >> parser_sample_rate("1hour")
+            >> "1h"
+        """
+        ret = str(num)
+        if unit == "min":
+            ret += "min"
+        elif unit == "hour":
+            ret += "h"
+        elif unit == "second":
+            ret += "s"
+        return ret
 
 
 def routine(debug: bool = False):

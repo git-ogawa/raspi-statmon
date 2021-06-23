@@ -84,6 +84,8 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="start.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usermodel.html">Add user-defined model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logplot.html">Plot the past data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colortheme.html">Color theme</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">changelog</a></li>
 </ul>
@@ -208,11 +210,15 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rstatmon.html#rstatmon.statdata.StatData.data_with_log">data_with_log() (rstatmon.statdata.StatData method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rstatmon.html#rstatmon.database.DBInit.db_setup">db_setup() (rstatmon.database.DBInit method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rstatmon.html#rstatmon.database.DBInit">DBInit (class in rstatmon.database)</a>
+</li>
+      <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.delete_model">delete_model() (rstatmon.usermodel.UserModel method)</a>
+</li>
+      <li><a href="rstatmon.html#rstatmon.statdata.StatData.digit_format">digit_format() (rstatmon.statdata.StatData method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -221,6 +227,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.execute">execute() (rstatmon.usermodel.UserModel method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="rstatmon.html#rstatmon.statdata.StatData.exist_logs">exist_logs() (rstatmon.statdata.StatData method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -244,11 +254,13 @@
 </li>
       <li><a href="rstatmon.html#rstatmon.statdata.StatData.get_csv">get_csv() (rstatmon.statdata.StatData method)</a>
 </li>
+      <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.get_current_model">get_current_model() (rstatmon.usermodel.UserModel method)</a>
+</li>
+      <li><a href="rstatmon.html#rstatmon.statdata.StatData.get_date">get_date() (rstatmon.statdata.StatData method)</a>
+</li>
       <li><a href="rstatmon.html#rstatmon.statdata.Hardware.get_disk">get_disk() (rstatmon.statdata.Hardware method)</a>
 </li>
       <li><a href="rstatmon.html#rstatmon.statdata.StatData.get_dummydata">get_dummydata() (rstatmon.statdata.StatData method)</a>
-</li>
-      <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.get_filename">get_filename() (rstatmon.usermodel.UserModel method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -272,6 +284,8 @@
 </li>
       <li><a href="rstatmon.html#rstatmon.statdata.Hardware.get_os">get_os() (rstatmon.statdata.Hardware method)</a>
 </li>
+      <li><a href="rstatmon.html#rstatmon.statdata.StatData.get_sampling_rate">get_sampling_rate() (rstatmon.statdata.StatData method)</a>
+</li>
       <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.get_value">get_value() (rstatmon.usermodel.UserModel method)</a>
 </li>
   </ul></td>
@@ -288,10 +302,12 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="rstatmon.html#rstatmon.passhash.init_bcrypt">init_bcrypt() (in module rstatmon.passhash)</a>
+      <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.import_models">import_models() (rstatmon.usermodel.UserModel method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="rstatmon.html#rstatmon.passhash.init_bcrypt">init_bcrypt() (in module rstatmon.passhash)</a>
+</li>
       <li><a href="rstatmon.html#rstatmon.database.init_db">init_db() (in module rstatmon.database)</a>
 </li>
   </ul></td>
@@ -314,6 +330,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="rstatmon.html#rstatmon.mylogger.MyLogger.log_compress">log_compress() (rstatmon.mylogger.MyLogger method)</a>
+</li>
       <li><a href="rstatmon.html#rstatmon.mylogger.MyLogger.logger_setup">logger_setup() (rstatmon.mylogger.MyLogger method)</a>
 </li>
       <li><a href="rstatmon.html#rstatmon.auth.LoginForm">LoginForm</a>
@@ -377,9 +395,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rstatmon.html#rstatmon.database.DBInit.read_json">read_json() (rstatmon.database.DBInit method)</a>
 </li>
-      <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.register_file">register_file() (rstatmon.usermodel.UserModel method)</a>
+      <li><a href="rstatmon.html#rstatmon.statdata.StatData.read_log">read_log() (rstatmon.statdata.StatData method)</a>
+</li>
+      <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.register_model">register_model() (rstatmon.usermodel.UserModel method)</a>
 </li>
       <li><a href="rstatmon.html#rstatmon.auth.RegistrationForm">RegistrationForm (class in rstatmon.auth)</a>
+</li>
+      <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.remove_current_model">remove_current_model() (rstatmon.usermodel.UserModel method)</a>
 </li>
       <li><a href="rstatmon.html#rstatmon.usermodel.JinjaTemplate.remove_model">remove_model() (rstatmon.usermodel.JinjaTemplate method)</a>
 </li>
@@ -442,6 +464,8 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.set_current_model">set_current_model() (rstatmon.usermodel.UserModel method)</a>
+</li>
       <li><a href="rstatmon.html#rstatmon.statdata.StatData">StatData (class in rstatmon.statdata)</a>
 </li>
   </ul></td>
@@ -458,7 +482,7 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.update">update() (rstatmon.usermodel.UserModel method)</a>
+      <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.update_json">update_json() (rstatmon.usermodel.UserModel method)</a>
 </li>
       <li><a href="rstatmon.html#rstatmon.database.User">User (class in rstatmon.database)</a>
 </li>
@@ -490,6 +514,8 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="rstatmon.html#rstatmon.usermodel.UserModel.validate_model">validate_model() (rstatmon.usermodel.UserModel method)</a>
+</li>
       <li><a href="rstatmon.html#rstatmon.auth.LoginForm.validate_password">validate_password() (rstatmon.auth.LoginForm method)</a>
 
       <ul>

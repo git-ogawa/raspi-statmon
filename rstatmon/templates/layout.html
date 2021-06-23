@@ -7,12 +7,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Raspi StatMon</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+        {% if session["bulmaswatch"] %}
+        {% autoescape false %}
+        {{ session["bulmaswatch"] }}
+        {% endautoescape %}
+        {% endif %}
         <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+
+        <!-- bulma calendar setting -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bulma-calendar/dist/css/bulma-calendar.min.css') }}">
+        <script src="{{ url_for('static', filename='css/bulma-calendar/dist/js/bulma-calendar.min.js') }}"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <!-- calendar color scheme -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
+
     </head>
 
     <body>
         <header>
-        <section class="hero is-dark">
+        <section class="hero {{ session['color_theme'] }}">
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <p class="title">
@@ -53,12 +67,14 @@
     </header>
 
     <main>
-        <section class="hero is-dark">
+        <section class="hero {{ session['color_theme'] }}">
             <div class="columns">
                 <div class="column is-offset-1 is-1">
                 <aside class="menu">
                     <p class="menu-label">
-                        General
+                        <span style="color: {{ session['color_emp'] }};">
+                            General
+                        </span>
                     </p>
                     <ul class="menu-list">
                         <a href="{{ url_for('home') }}">
@@ -67,9 +83,14 @@
                         <a href="{{ url_for('user_model') }}">
                             <li>User model</li>
                         </a>
+                        <a href="{{ url_for('plot') }}">
+                            <li>Past data</li>
+                        </a>
                     </ul>
                     <p class="menu-label">
-                        Account
+                        <span style="color: {{ session['color_emp'] }};">
+                            Account
+                        </span>
                     </p>
                     <ul class="menu-list">
                         <a href="{{ url_for('profile') }}">
@@ -77,8 +98,15 @@
                         </a>
                     </ul>
                     <p class="menu-label">
-                        Settings
+                        <span style="color: {{ session['color_emp'] }};">
+                            Settings
+                        </span>
                     </p>
+                    <ul class="menu-list">
+                        <a href="{{ url_for('theme') }}">
+                            <li>Theme</li>
+                        </a>
+                    </ul>
                     <ul class="menu-list">
                         <a href="{{ url_for('setting') }}">
                             <li>Settings</li>
@@ -94,13 +122,13 @@
     </main>
 
     <footer>
-        <section class="hero is-dark">
+        <section class="hero {{ session['color_theme'] }}">
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <p class="title">
                         The documentation is
                         <a href="https://git-ogawa.github.io/raspi-statmon/">
-                            <span style="color: #ff0;">
+                            <span style="color: {{ session['color_emp'] }};">
                                 here
                             </span>
                         </a>

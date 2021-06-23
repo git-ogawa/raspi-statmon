@@ -1,4 +1,4 @@
-
+import tarfile
 from pathlib import Path
 from datetime import datetime
 from loguru import logger
@@ -7,6 +7,9 @@ from loguru import logger
 class MyLogger():
     """Logging class with loguru module.
     """
+
+    def __init__(self):
+        self.root = Path(__file__).resolve().parent / "data/log"
 
     def logger_setup(self):
         data_root = Path(__file__).resolve().parent / "data/log"
@@ -56,3 +59,14 @@ class MyLogger():
             logger.error(msg)
         elif level == "warning":
             logger.warning(msg)
+
+    def log_compress(self):
+        """Compress log file to tar.gz
+        """
+        logs = [i for i in self.root.glob("**/*") if i.is_file()]
+        for log in logs:
+            # compress
+            tar = f"{str(log)}.tar.gz"
+            with tarfile.open(tar, "w:gz") as f:
+                f.add(str(log))
+

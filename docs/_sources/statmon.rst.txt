@@ -1,0 +1,7 @@
+statmon module
+==============
+
+.. automodule:: statmon
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -38,7 +38,7 @@ sudo mysql
 
 If you can log in, you will see the following message. 
 
-```sql
+```
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 11
 Server version: 10.0.28-MariaDB-2+b1 Raspbian testing-staging
@@ -118,7 +118,7 @@ This settings is stored as the json file in the `config/database.json`.
 
 
 :::{warning}
-When creating the database, login as root user with the password. If you have't set up yet, you need setup before this step.
+When creating the database, login as root user with the password. If you have't set up yet, you need setup before this step (see [Set the password for the root user](#set-the-password-for-the-root-user)).
 :::
 
 

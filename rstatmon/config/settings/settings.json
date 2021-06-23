@@ -2,12 +2,12 @@
     "chart": {
         "temperature": {
             "yaxes": {
-                "min": 20,
+                "min": 30,
                 "max": 70,
-                "step": 5
+                "step": 10
             },
             "streaming": {
-                "duration": 10000
+                "duration": 30000
             }
         },
         "usage": {
