@@ -1,6 +1,6 @@
 __pycache__
-statmon/data
-statmon/config/database.json
+data
+rstatmon/config/database.json
 todo.md
 dummy
 *ipynb*
