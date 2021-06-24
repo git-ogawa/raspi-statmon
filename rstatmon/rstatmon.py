@@ -70,7 +70,7 @@ if __name__ == "__main__":
         finally:
             parser.exit()
 
-    signal.signal(signal.SIGINT, signal_handler)
+    #signal.signal(signal.SIGINT, signal_handler)
     p = Process(target=routine, args=(args.debug,))
     p.start()
     parent_pid = os.getpid()

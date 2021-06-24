@@ -8,7 +8,6 @@ import uptime
 import random
 import time
 import csv
-import re
 import pandas as pd
 from pathlib import Path
 from typing import Tuple, Union
