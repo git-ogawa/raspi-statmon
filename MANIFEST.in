@@ -1,2 +1,3 @@
 #exclude rstatmon/__pycache__
+recursive-exclude src *.csv
 prune src/rstatmon/data
