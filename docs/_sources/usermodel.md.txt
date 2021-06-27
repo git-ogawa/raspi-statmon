@@ -26,9 +26,9 @@ And you should check that the script work as expected.
 ```
 
 ## Register the script.
-The next step is to register the script you prepare to the rstatmon. To do this is simply executing the script with `-n <script.py>`. The following is the our case.
+The next step is to register the script you prepare to the rstatmon. To do this is simply executing `rstatmon -n <script_name>`. The following is the our case.
 ```
->>> python rstatmon -n random_int.py
+>>> rstatmon -n random_int.py
 register : random_int.py
 ```
 

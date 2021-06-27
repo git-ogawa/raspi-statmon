@@ -2,12 +2,7 @@ Installation
 ============
 
 ## The project
-
-The program is single python script so that you just clone the repository in your local machine by `git clone`. 
-```bash
-git clone https://github.com/git-ogawa/raspi-statmon.git
-```
-However, you need install the dependent packages. If you haven't installed the packages in requirements yet, can install them with pip
+You can install the project by `pip`
 ```bash
 pip install git+https://github.com/git-ogawa/raspi-statmon.git
 ```
@@ -26,5 +21,5 @@ sudo apt install mariadb-server-10.0
 ## pandas
 The prohect uses `pandas` but the installation by pip doesn't seem to be working in raspberry pi OS. Thus, Install by following with apt.
 ```
-sudo apt-get install python3-pandas
+sudo apt install python3-pandas
 ```

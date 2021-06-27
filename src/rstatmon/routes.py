@@ -8,16 +8,16 @@ from flask import (
 )
 from flask_login import login_user, current_user, logout_user, login_required
 
-from mylogger import MyLogger
-from statdata import Hardware, StatData
-from auth import RegistrationForm, LoginForm
-from database import User
-from passhash import bcrypt
-from database import db
-from usermodel import UserModel, JinjaTemplate
-from session_manager import Session
-from general import Settings, Bulma
-from application import app
+from rstatmon.mylogger import MyLogger
+from rstatmon.statdata import Hardware, StatData
+from rstatmon.auth import RegistrationForm, LoginForm
+from rstatmon.database import User
+from rstatmon.passhash import bcrypt
+from rstatmon.database import db
+from rstatmon.usermodel import UserModel, JinjaTemplate
+from rstatmon.session_manager import Session
+from rstatmon.general import Settings, Bulma
+from rstatmon.application import app
 
 
 @app.route("/")
@@ -286,20 +286,26 @@ def plot_data():
         start = request.form.get("start")
         end = request.form.get("end")
 
+        stat = StatData()
+        if not stat.time_validate(start, end):
+            flash(
+                "The format of Start or End is invalid.",
+                "danger")
+            days = StatData().exist_logs()
+            return render_template("calendar.html", date_list=days)
+
         start_hour = int(start[0])
         start_min = int(start[1])
         end_hour = int(end[0])
         end_min = int(end[1])
-
-        stat = StatData()
         sampling_rate = stat.get_sampling_rate(rate, unit)
         json_data = stat.read_log(stat.get_date(date), sampling_rate)
         year, month, day = stat.get_date(date, True)
         json_data["year"] = int(year)
         json_data["month"] = int(month)
         json_data["day"] = int(day)
-        json_data["start"] = f"{year}-{month}-{day} {start}:00"
-        json_data["end"] = f"{year}-{month}-{day} {end}:00"
+        json_data["start"] = f"{year}-{month}-{day} {start_hour}:{start_min}"
+        json_data["end"] = f"{year}-{month}-{day} {end_hour}:{end_min}"
         days = StatData().exist_logs()
         return render_template("calendar.html", date_list=days, result=json_data)
     return render_template("calendar.html", date_list=days)

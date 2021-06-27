@@ -4,8 +4,8 @@ from json.decoder import JSONDecodeError
 from pathlib import Path
 from flask import Flask
 
-from passhash import init_bcrypt
-from database import init_db
+from rstatmon.passhash import init_bcrypt
+from rstatmon.database import init_db
 
 
 def create_app():
@@ -27,6 +27,7 @@ def create_app():
     db_name = json_data["db_name"]
     db_url = f"mysql+pymysql://{username}:{password}@{server}:{port}/{db_name}?charset=utf8"
 
+    print("__name: ", __name__)
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'cfb33786023cc152019e747a051f73c6'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

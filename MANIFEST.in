@@ -1,0 +1,2 @@
+#exclude rstatmon/__pycache__
+prune src/rstatmon/data

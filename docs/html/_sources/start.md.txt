@@ -91,9 +91,9 @@ mysql -u root -p***
 
 
 ## Database setup
-At first, you need create the database and table for user account management. The rstatmon uses `mysql`or `mariadb` to access databases through`flask-SQLAlchemy`. What you have to do at first is that set what user will be used when access to the database. To register the user, exceute `db_setup.py` with "register" ( `-r` )and "password" ( `-p` ) options as follows.
+At first, you need create the database and table for user account management. The rstatmon uses `mysql`or `mariadb` to access databases through`flask-SQLAlchemy`. What you have to do at first is that set what user will be used when access to the database. To register the user, exceute ``rstatmon-setup` with "password" ( `-p` ) options as follows.
 ```
-python db_setup.py -r [-u <username>] -p <password> 
+rstatmon-setup [-u <username>] -p <password> 
 ```
 
 Here is a list of options related to the user registration. Only password option need to be specified. For the other options, the default values are used if not to be specified.
@@ -108,11 +108,11 @@ Here is a list of options related to the user registration. Only password option
 
 For example, you want to access database as the root user with password "1234", execute as below.
 ```
-python db_setup.py -r -p 1234 
+rstatmon-setup -p 1234 
 ```
 Or set below if you want to use another user "test" and password "foo".
 ```
-python db_setup.py -r -u test -p foo
+rstatmon-setup -u test -p foo
 ```
 This settings is stored as the json file in the `config/database.json`.
 
@@ -122,9 +122,9 @@ When creating the database, login as root user with the password. If you have't 
 :::
 
 
-Next, Execute `rstatmon.py` with `-c` option to create database and table for managing users.
+Next, Execute `rstatmon` with `-c` option to create database and table for managing users.
 ```bash
->> python rstatmon.py -c
+>> rstatmon -c
 Create 'user' table in database 'raspi'
 Create admin user.
 ```
@@ -132,10 +132,10 @@ Executing with this option creates the new database `raspi`, tabel `user` in the
 
 
 ## Start app
-To start the application, execute the `rstatmon.py` in the terminal. Once starting the app, the server will be started and you can enter to login page in the browser.
+To start the application, execute the `rstatmon` in the terminal. Once starting the app, the server will be started and you can enter to login page in the browser.
 
 ```bash
->> python rstatmon.py 
+>> rstatmon
 * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
 In the above case, you can access the page by `http://0.0.0.0:5000/` from the same machine where the app is running (that is raspberry pi). In case that access from other PC with the same network, access by `https://[ip_addr]:5000/`, here [ip_addr] is the IP address of the raspberry pi. From here, keep the server running.
