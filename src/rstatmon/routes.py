@@ -161,8 +161,7 @@ def remove_model():
 @app.route('/setting')
 @login_required
 def setting():
-    p = Path()
-    settings = p / "config/settings/settings.json"
+    settings = Path(__file__).resolve().parent / "config/settings/settings.json"
     with open(settings, "r") as f:
         json_data = json.load(f)
     return render_template('settings.html', title='Settings', data=json_data)
