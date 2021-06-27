@@ -392,6 +392,43 @@ class StatData():
             ret += "s"
         return ret
 
+    def time_validate(self, start: str, end: str) -> bool:
+        """Check if the input string is valid.
+
+        Returns true if the time is HH::MM, otherwise false.
+
+        Args:
+            t (str): [description]
+
+        Returns:
+            bool: [description]
+        """
+        t_list = [start, end]
+        for t in t_list:
+            tmp_list = t.split(":")
+            if len(tmp_list) != 2:
+                return False
+            try:
+                hour = int(tmp_list[0])
+                minute = int(tmp_list[1])
+                if 0 <= hour <= 24 and 0 <= minute < 60:
+                    pass
+                else:
+                    return False
+            except (ValueError, IndexError):
+                return False
+        return True
+
+    def time_relation(self, t1: str, t2: str) -> bool:
+        t1_h, t1_m = t1.split(":")
+        t2_h, t2_m = t2.split(":")
+        date1 = datetime(2021, 1, 1, int(t1_h), int(t1_m))
+        date2 = datetime(2021, 1, 1, int(t2_h), int(t2_m))
+        if date1 < date2:
+            return True
+        else:
+            return False
+
 
 def routine(debug: bool = False):
     s = StatData(debug)

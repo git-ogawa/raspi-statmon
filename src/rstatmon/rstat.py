@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import sys
-import os
 import argparse
+import os
 import signal
-import psutil
+import sys
 from multiprocessing import Process
 from flask_login import LoginManager
 from pathlib import Path
 
-from database import User, DBInit
-from statdata import routine
-from usermodel import UserModel
-from application import app
-
+from rstatmon.database import User, db, DBInit
+from rstatmon.statdata import routine
+from rstatmon.usermodel import UserModel
+from rstatmon.application import app
+import rstatmon.routes
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
@@ -24,13 +23,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-def signal_handler(*args):
-    for p in (child_id, parent_pid):
-        proc = psutil.Process(p)
-        proc.terminate()
-
-
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '-d',
@@ -81,3 +74,7 @@ if __name__ == "__main__":
         app.run(debug=True, threaded=True)
     else:
         app.run(debug=False, threaded=True, host="0.0.0.0")
+
+
+if __name__ == "__main__":
+    main()

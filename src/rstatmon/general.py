@@ -2,7 +2,7 @@ import json
 from typing import Tuple
 from flask import session
 from pathlib import Path
-from session_manager import Session
+from rstatmon.session_manager import Session
 
 
 class Settings():

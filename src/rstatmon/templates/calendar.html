@@ -13,7 +13,17 @@
                     In this page, you can draw the graph from the log. Select
                     date, click plot button to plot the data.
                 </p>
-            </div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="block flashes">
+                        {% for category, message in messages %}
+                            <div class="notification is-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
             <form id="date_plot" action="/plot_data" method="POST">
                 <div class="columns">
                     <div class="column is-3">
