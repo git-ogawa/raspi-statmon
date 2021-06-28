@@ -22,7 +22,7 @@ You can also add a graph to monitor the data obtained from the external sensor c
    logplot
    colortheme
    appendix
-   changelog
+   CHANGELOG
 
 
 Indices and tables
