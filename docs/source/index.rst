@@ -24,6 +24,10 @@ You can also add a graph to monitor the data obtained from the external sensor c
    appendix
    changelog
 
+.. changelog::
+   :changelog-url: https://your-project.readthedocs.io/en/stable/#changelog
+   :github: https://github.com/you/your-project/releases/
+   :pypi: https://pypi.org/project/your-project/
 
 Indices and tables
 ==================

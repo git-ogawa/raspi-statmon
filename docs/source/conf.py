@@ -23,7 +23,7 @@ copyright = '2021, ogawa'
 author = 'ogawa'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0'
+release = '1.2.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -37,7 +37,8 @@ extensions = [
     "myst_parser",
     "sphinx_markdown_tables",
     'sphinx.ext.autosectionlabel',
-    "sphinx.ext.githubpages"
+    "sphinx.ext.githubpages",
+    "sphinx_github_changelog"
 ]
 
 myst_enable_extensions = [
@@ -86,3 +87,9 @@ source_suffix = {
     '.txt': 'markdown',
     '.md': 'markdown',
 }
+
+
+# Provide a GitHub API token:
+# Pass the SPHINX_GITHUB_CHANGELOG_TOKEN environment variable to your build
+# OR
+sphinx_github_changelog_token = "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"
