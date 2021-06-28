@@ -46,12 +46,18 @@ def main():
         j = Path(__file__).resolve().parent / "config/database.json"
         with open(str(j), mode='w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
+        print("-" * 60)
+        for key, val in data.items():
+            print(f"{key:<10}: {val}")
+        print("-" * 60)
         print("register success")
-        print("create :", j)
+        print("The information about database is written in the following file.")
+        print(j)
     else:
         print(
             "\033[31mUsername or password is empty.\033[0m",
             file=sys.stderr)
+        parser.print_help()
     parser.exit()
 
 

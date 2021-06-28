@@ -87,6 +87,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#the-project">The project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mysql">MySQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pandas">pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uninstallation">Uninstallation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="start.html">Getting started</a></li>
@@ -182,6 +183,25 @@
 <h2>pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
 <p>The prohect uses <code class="docutils literal notranslate"><span class="pre">pandas</span></code> but the installation by pip doesn’t seem to be working in raspberry pi OS. Thus, Install by following with apt.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">pandas</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uninstallation">
+<h2>Uninstallation<a class="headerlink" href="#uninstallation" title="Permalink to this headline">¶</a></h2>
+<p>You can uninstall the application by <code class="docutils literal notranslate"><span class="pre">pip</span></code> but the database and data files need to be deleted before doing that. To do this is to execute <code class="docutils literal notranslate"><span class="pre">rstatmon</span> <span class="pre">--remove</span></code>. Typing <code class="docutils literal notranslate"><span class="pre">yes</span></code> to the prompt delete the files as follows.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ rstatmon --remove
+Do you really remove the all data? <span class="o">(</span>yes/<span class="o">[</span>no<span class="o">])</span>:yes
+Deleted raspi database
+Database delete sucessfully completed.
+Delete /home/username/.local/lib/python3.8/site-packages/rstatmon/static
+Delete /home/username/.local/lib/python3.8/site-packages/rstatmon/templates
+Delete /home/username/.local/lib/python3.8/site-packages/rstatmon/data
+Delete /home/username/.local/lib/python3.8/site-packages/rstatmon/config
+Delete process sucessfully completed.
+</pre></div>
+</div>
+<p>Then, uninstall the app by pip.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">rstatmon</span>
 </pre></div>
 </div>
 </div>

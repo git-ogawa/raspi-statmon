@@ -1,7 +1,10 @@
 import json
-from typing import Tuple
-from flask import session
+import subprocess
 from pathlib import Path
+from typing import Tuple
+
+from flask import session
+
 from rstatmon.session_manager import Session
 
 
@@ -31,6 +34,20 @@ class Settings():
         data["general"]["view"]["theme"] = theme
         with open(self.setting_file, "w") as f:
             json.dump(data, f, indent=4)
+
+    @staticmethod
+    def delete_metadata():
+        root_dir = Path(__file__).resolve().parent
+        for d in ["static", "templates", "data", "config"]:
+            target = str(root_dir / d)
+            cmd = f"rm -rf {target}"
+            try:
+                subprocess.run(cmd.split())
+                print(f"Delete {target}")
+            except:
+                print("Delete failed")
+        print("Delete process sucessfully completed.")
+
 
 
 class Bulma():

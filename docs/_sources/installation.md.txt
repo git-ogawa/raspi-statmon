@@ -23,3 +23,23 @@ The prohect uses `pandas` but the installation by pip doesn't seem to be working
 ```
 sudo apt install python3-pandas
 ```
+
+
+## Uninstallation
+You can uninstall the application by `pip` but the database and data files need to be deleted before doing that. To do this is to execute `rstatmon --remove`. Typing `yes` to the prompt delete the files as follows.
+```bash
+$ rstatmon --remove
+Do you really remove the all data? (yes/[no]):yes
+Deleted raspi database
+Database delete sucessfully completed.
+Delete /home/username/.local/lib/python3.8/site-packages/rstatmon/static
+Delete /home/username/.local/lib/python3.8/site-packages/rstatmon/templates
+Delete /home/username/.local/lib/python3.8/site-packages/rstatmon/data
+Delete /home/username/.local/lib/python3.8/site-packages/rstatmon/config
+Delete process sucessfully completed.
+```
+
+Then, uninstall the app by pip.
+```
+pip uninstall rstatmon
+```

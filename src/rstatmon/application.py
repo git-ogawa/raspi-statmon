@@ -13,9 +13,9 @@ def create_app():
     try:
         with open(j, "r") as f:
             json_data = json.load(f)
-    except JSONDecodeError:
+    except (JSONDecodeError, FileNotFoundError):
         print(
-            "\033[31mFailed to open the json. Create the json by executing db_setup.py\033[0m",
+            "\033[31mFailed to open the database file. Create the json by executing rstatmon-setup\033[0m",
             file=sys.stderr
         )
         sys.exit(-1)
@@ -27,7 +27,6 @@ def create_app():
     db_name = json_data["db_name"]
     db_url = f"mysql+pymysql://{username}:{password}@{server}:{port}/{db_name}?charset=utf8"
 
-    print("__name: ", __name__)
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'cfb33786023cc152019e747a051f73c6'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

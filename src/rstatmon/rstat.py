@@ -8,6 +8,7 @@ from multiprocessing import Process
 from flask_login import LoginManager
 from pathlib import Path
 
+from rstatmon.general import Settings
 from rstatmon.database import User, db, DBInit
 from rstatmon.statdata import routine
 from rstatmon.usermodel import UserModel
@@ -43,6 +44,11 @@ def main():
         type=str,
         help='Register a new user-defined model.'
     )
+    parser.add_argument(
+        '--remove',
+        help="Remove the data",
+        action='store_true'
+    )
     args = parser.parse_args()
     if args.new:
         model = UserModel()
@@ -56,6 +62,11 @@ def main():
             d = DBInit()
             d.read_json(js)
             d.db_setup()
+        except FileNotFoundError:
+            print(
+                "\033[31mThere is no database file.\n" +
+                "Execute rstatmon-setup before this step.\033[0m",
+                file=sys.stderr)
         except:
             print(
                 "\033[31mFailed to create the database.\033[0m",
@@ -63,11 +74,22 @@ def main():
         finally:
             parser.exit()
 
+    if args.remove:
+        print("Do you really remove the all data? (yes/[no]):", end="")
+        ans = input().strip()
+        if ans == "yes":
+            DBInit().delete_database()
+            Settings.delete_metadata()
+        else:
+            print("quit")
+        parser.exit()
+
     #signal.signal(signal.SIGINT, signal_handler)
     p = Process(target=routine, args=(args.debug,))
     p.start()
-    parent_pid = os.getpid()
-    child_id = p.pid
+    #parent_pid = os.getpid()
+    #child_id = p.pid
+
 
     if args.debug:
         app.config["TEST"] = True

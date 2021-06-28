@@ -1,6 +1,8 @@
 """Module for accessing to databases.
 """
 import json
+import sys
+from pathlib import Path
 
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
@@ -8,7 +10,7 @@ from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from flask_bcrypt import Bcrypt
-
+from pymysql import cursors, connect, OperationalError
 
 db = SQLAlchemy()
 
@@ -91,6 +93,24 @@ class DBInit():
         print("\033[34mCreate admin user.\033[0m")
         return True
 
+    def delete_database(self):
+        f = Path(__file__).resolve().parent / "config/database.json"
+        self.read_json(str(f))
+        cursor_type = cursors.DictCursor
+        connection = connect(
+            host=self.host,
+            user=self.username,
+            password=self.password,
+            cursorclass=cursor_type)
+        db_curse = connection.cursor()
+        sql = f"drop database {self.db_name}"
+        try:
+            db_curse.execute(sql)
+            print(f"Deleted {self.db_name} database")
+            print("Database delete sucessfully completed.")
+        except OperationalError:
+            print("Database delete failed.", file=sys.stderr)
+
 
 class User(db.Model, UserMixin):
     __tablename__ = "user"
@@ -111,3 +131,5 @@ class User2(Base):
     user_id = Column(String(100), primary_key=True, nullable=False)
     username = Column(String(100), nullable=False)
     password = Column(String(100), nullable=False)
+
+
