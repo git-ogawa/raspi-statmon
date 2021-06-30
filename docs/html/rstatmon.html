@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>rstatmon package &mdash; Raspi-StatMon 1.0.0 documentation</title>
+  <title>rstatmon package &mdash; Raspi-StatMon 1.2.1 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Raspi-StatMon 1.0.0 documentation" href="index.html"/> 
+    <link rel="top" title="Raspi-StatMon 1.2.1 documentation" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -156,13 +156,8 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-rstatmon.application">
-<span id="rstatmon-application-module"></span><h2>rstatmon.application module<a class="headerlink" href="#module-rstatmon.application" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt id="rstatmon.application.create_app">
-<code class="sig-prename descclassname"><span class="pre">rstatmon.application.</span></code><code class="sig-name descname"><span class="pre">create_app</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.application.create_app" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="rstatmon-application-module">
+<h2>rstatmon.application module<a class="headerlink" href="#rstatmon-application-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-rstatmon.auth">
 <span id="rstatmon-auth-module"></span><h2>rstatmon.auth module<a class="headerlink" href="#module-rstatmon.auth" title="Permalink to this headline">¶</a></h2>
@@ -338,6 +333,11 @@ database.</p>
 <dl class="py method">
 <dt id="rstatmon.database.DBInit.db_setup">
 <code class="sig-name descname"><span class="pre">db_setup</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.DBInit.db_setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.database.DBInit.delete_database">
+<code class="sig-name descname"><span class="pre">delete_database</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rstatmon.database.DBInit.delete_database" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -790,6 +790,29 @@ and str, showing the time and unit respectively. Finally,</p>
 <code class="sig-name descname"><span class="pre">read_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#rstatmon.statdata.StatData.read_log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.time_relation">
+<code class="sig-name descname"><span class="pre">time_relation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span><a class="headerlink" href="#rstatmon.statdata.StatData.time_relation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rstatmon.statdata.StatData.time_validate">
+<code class="sig-name descname"><span class="pre">time_validate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span><a class="headerlink" href="#rstatmon.statdata.StatData.time_validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the input string is valid.</p>
+<p>Returns true if the time is HH::MM, otherwise false.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<em>str</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
@@ -967,7 +990,7 @@ test : test.py</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.0',
+            VERSION:'1.2.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
