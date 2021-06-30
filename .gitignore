@@ -4,3 +4,6 @@ rstatmon/config/database.json
 todo.md
 dummy
 *ipynb*
+
+build/
+dist/
