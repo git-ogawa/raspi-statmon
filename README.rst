@@ -9,7 +9,3 @@ obtained from the external sensor connected to the raspi.
 See `here <https://git-ogawa.github.io/raspi-statmon/>`__ for
 installation, usage and more details.
 
-|image0|
-
-.. |image0| image:: docs/img/demo.gif
-

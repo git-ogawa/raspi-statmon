@@ -89,7 +89,3 @@ source_suffix = {
 }
 
 
-# Provide a GitHub API token:
-# Pass the SPHINX_GITHUB_CHANGELOG_TOKEN environment variable to your build
-# OR
-sphinx_github_changelog_token = "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"
