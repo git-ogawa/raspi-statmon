@@ -4,3 +4,7 @@ rstatmon/config/database.json
 todo.md
 dummy
 *ipynb*
+
+build/
+sdist/
+src/*egg-info*
